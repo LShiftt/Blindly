@@ -9,3 +9,8 @@
     <h1>Hello World</h1>
 </body>
 </html>
+<?php
+// Exemple d'utilisation
+$genre = new Genre("Rock", 95);
+echo $genre;
+?>

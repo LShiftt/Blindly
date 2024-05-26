@@ -2,8 +2,9 @@
 class Genre {
     private static $idCounter = 1;  // Compteur statique pour générer des ID uniques
     private $id;
-    private $name;
-    private $popularity;
+    private string $nom;
+    private string $popularite;
+    private string $couleur;
 
     // Constructeur
     public function __construct($name, $popularity) {
@@ -15,8 +16,8 @@ class Genre {
     // Méthode __toString
     public function __toString() {
         return "ID: " . $this->id . "\n" .
-               "Name: " . $this->name . "\n" .
-               "Popularity: " . $this->popularity . "\n";
+               "Name: " . $this->nom . "\n" .
+               "Popularity: " . $this->popularite . "\n";
     }
 
     // Getters
@@ -24,24 +25,20 @@ class Genre {
         return $this->id;
     }
 
-    public function getName() {
-        return $this->name;
+    public function getNom() {
+        return $this->nom;
     }
 
-    public function getPopularity() {
-        return $this->popularity;
+    public function getPopularite() {
+        return $this->popularite;
     }
 
     // Setters
-    public function setName($name) {
-        $this->name = $name;
+    public function setNom($nom) {
+        $this->nom = ucfirst(strtolower($nom));
     }
 
-    public function setPopularity($popularity) {
-        $this->popularity = $popularity;
+    public function setPopularite($popularite) {
+        $this->popularite = $popularite;
     }
 }
-
-// Exemple d'utilisation
-$genre = new Genre("Rock", 95);
-echo $genre;
