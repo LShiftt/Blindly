@@ -12,7 +12,7 @@ class Song
     private string $author;
 
     // Constructeur
-    public function __construct($title, $genre, $image, $url, $author)
+    public function __construct($title,$author, Genre $genre, $image, $url)
     {
         $this->id = self::$idCounter++;
         $this->title = $title;
