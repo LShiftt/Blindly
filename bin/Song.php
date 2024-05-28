@@ -6,20 +6,22 @@ class Song
 {
     private static $idCounter = 1;  // Compteur statique pour générer des ID uniques
     private string $title;
+    private string $author;
     private Genre $genre;
     private string $image;
     private string $url;
-    private string $author;
+
 
     // Constructeur
     public function __construct($title,$author, Genre $genre, $image, $url)
     {
         $this->id = self::$idCounter++;
         $this->title = $title;
+        $this->author = $author;
         $this->genre = $genre;
         $this->image = $image;
         $this->url = $url;
-        $this->author = $author;
+        
     }
 
     // Méthode __toString

@@ -16,15 +16,9 @@ function head(string $title = ''): string
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"> 
-  <link href='https://unpkg.com/css.gg@2.0.0/icons/css/facebook.css' rel='stylesheet'>
-  <link href='https://unpkg.com/css.gg@2.0.0/icons/css/instagram.css' rel='stylesheet'>
-  
   <style>
-    :root {
-      --font-size: 22px;
-    }
   </style>
+
   <title>$title</title>
 </head>
 <body>
@@ -35,6 +29,7 @@ function foot(): string
 {
     return  <<<HTML_FOOT
 <footer>
+</footer>
 </body>
 </html>
 HTML_FOOT;

@@ -2,9 +2,9 @@
 class Genre {
     private static $idCounter = 1;  // Compteur statique pour générer des ID uniques
     private $id;
-    private string $nom;
-    private string $popularite;
-    private string $couleur;
+    private string $name;
+    private string $popularity;
+    private string $color;
 
     // Constructeur
     public function __construct($name, $popularity) {
@@ -16,8 +16,8 @@ class Genre {
     // Méthode __toString
     public function __toString() {
         return "ID: " . $this->id . "\n" .
-               "Name: " . $this->nom . "\n" .
-               "Popularity: " . $this->popularite . "\n";
+               "Name: " . $this->name . "\n" .
+               "Popularity: " . $this->popularity . "\n";
     }
     public function uploadSong(){
         $sql = "INSERT INTO ";
@@ -28,20 +28,20 @@ class Genre {
         return $this->id;
     }
 
-    public function getNom() {
-        return $this->nom;
+    public function getName() {
+        return $this->name;
     }
 
-    public function getPopularite() {
-        return $this->popularite;
+    public function getPopularity() {
+        return $this->popularity;
     }
 
     // Setters
-    public function setNom($nom) {
-        $this->nom = ucfirst(strtolower($nom));
+    public function setName($name) {
+        $this->name = ucfirst(strtolower($name));
     }
 
-    public function setPopularite($popularite) {
-        $this->popularite = $popularite;
+    public function setPopularity($popularity) {
+        $this->popularity = $popularity;
     }
 }
