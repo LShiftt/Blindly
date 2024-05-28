@@ -19,6 +19,9 @@ class Genre {
                "Name: " . $this->nom . "\n" .
                "Popularity: " . $this->popularite . "\n";
     }
+    public function uploadSong(){
+        $sql = "INSERT INTO ";
+    }
 
     // Getters
     public function getId() {
