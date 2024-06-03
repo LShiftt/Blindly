@@ -7,9 +7,14 @@ class Song
     private static $idCounter = 1;  // Compteur statique pour générer des ID uniques
     private string $title;
     private string $author;
-    private Genre $genre;
+    private string $genre;
     private string $image;
     private string $url;
+
+    //fonction caché
+    //fonction dévoile
+    //fonction liké
+    //
 
 
     // Constructeur
