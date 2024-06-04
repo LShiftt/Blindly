@@ -73,11 +73,6 @@ function readqr($dbh, $data)
 ;
 
 ?>
-<style>
-    img {
-        max-width: 150px;
-    }
-</style>
 <form method="post" action="">
     <button type="submit" name="execute_function">Exécuter la fonction PHP</button>
 </form>
