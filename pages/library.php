@@ -4,7 +4,8 @@ require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
 $qrData = "1/3/45";
-function search($dbh, $data){
+function search($dbh, $data)
+{
     $liked = explode('/', $data);
 
     $whereClauses = array();
@@ -24,7 +25,7 @@ function search($dbh, $data){
 
 
     foreach ($songs as $song) {
-// il faut trier les chansons récup par genre puis les affichées 
+        // il faut trier les chansons récup par genre puis les affichées 
         echo '
   <article>
   <h1>' . $song["genre"] . '</h1>
@@ -33,13 +34,13 @@ function search($dbh, $data){
   <audio controls src="' . $song["url"] . '" ></audio>
   <p>' . $song["url"] . '</p>
 </article>';
-    };
+    }
+    ;
 }
-function readqr($dbh, $data) 
+function readqr($dbh, $data)
 {
     //ajouter avec des inputs aux favories
-    $url = "1/3/45";
-    $liked = explode('/', $url);
+    $liked = explode('/', $data);
 
     $whereClauses = array();
     foreach ($liked as $value) {
@@ -56,7 +57,6 @@ function readqr($dbh, $data)
 
     // dump($songs);
 
-
     foreach ($songs as $song) {
 
         echo '
@@ -69,13 +69,14 @@ function readqr($dbh, $data)
 </article>';
     }
     ;
-};
+}
+;
 
 ?>
 <style>
-  img{
-    max-width: 150px;
-  }
+    img {
+        max-width: 150px;
+    }
 </style>
 <form method="post" action="">
     <button type="submit" name="execute_function">Exécuter la fonction PHP</button>
@@ -84,7 +85,8 @@ function readqr($dbh, $data)
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['execute_function'])) {
     readqr($dbh, $qrData);
-}else{
+
+} else {
     search($dbh, $_SESSION['liked']);
 }
 

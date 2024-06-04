@@ -5,7 +5,6 @@ echo head("Blindly - Read Qr Code");
 //ici le code qui permet de lire le Qr code via l'api
 function readqr($dbh)
 {
-
     $url = "1/3/45";
     $liked = explode('/', $url);
 
