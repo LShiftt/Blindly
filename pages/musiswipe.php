@@ -13,13 +13,6 @@ $sql = 'SELECT * FROM `song` WHERE 1 ORDER BY id ASC'; // by random
     $songs = $sth->fetchAll();
 ?>
 
-<style>
-  img{
-    max-width: 150px;
-  }
-</style>
-
-
 <?php
 
 dump($songs);
