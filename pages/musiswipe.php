@@ -46,11 +46,11 @@ echo head("Blindly - MusiSwipe");
       var regex = '-';
 
       if (deltaXString.search(regex) !== -1) {
-        that.style.color = "black";
+        that.style.color = "white";
       } else {
         that.style.color = "red";
       }
-      
+
       return false; // cancels scrolling
     }
 
