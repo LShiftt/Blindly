@@ -2,16 +2,6 @@
 require '../bootstrap.php';
 echo head("Blindly - MusiSwipe");
 
-
-function RNG()
-{
-
-}
-$sql = 'SELECT * FROM `song` WHERE 1 ORDER BY id ASC'; // by random
-$sth = $dbh->prepare($sql);
-$dbh->prepare($sql);
-$sth->execute();
-$songs = $sth->fetchAll();
 ?>
 <style>
   .test-element {
@@ -28,7 +18,10 @@ $songs = $sth->fetchAll();
   }
 </style>
 <div class="test-element">Element</div>
-<script>function startDrag(e) {
+<input class="text" type="text">
+<script>
+  const text = document.querySelector('.text');
+  function startDrag(e) {
 
     this.ontouchmove = this.onmspointermove = moveDrag;
 
@@ -38,9 +31,10 @@ $songs = $sth->fetchAll();
     }
 
     var pos = [this.offsetLeft, this.offsetTop];
+    text.value = pos;
     var that = this;
     var origin = getCoors(e);
-    console.log("Coors 1 "+getCoors(e));
+
 
     function moveDrag(e) {
       var currentPos = getCoors(e);
@@ -48,6 +42,15 @@ $songs = $sth->fetchAll();
       var deltaY = currentPos[1] - origin[1];
       this.style.left = (pos[0] + deltaX) + 'px';
       this.style.top = (pos[1] + deltaY) + 'px';
+      var deltaXString = deltaX.toString();
+      var regex = '-';
+
+      if (deltaXString.search(regex) !== -1) {
+        that.style.color = "black";
+      } else {
+        that.style.color = "red";
+      }
+      
       return false; // cancels scrolling
     }
 
@@ -61,36 +64,28 @@ $songs = $sth->fetchAll();
         coors[0] = e.clientX;
         coors[1] = e.clientY;
       }
-      console.log("Coors 2 "+ coors);
+      console.log("Coors 2 " + coors);
       return coors;
     }
     function nextPage(e) {
 
     }
   }
-  var elements = document.querySelectorAll('.test-element');
-  [].forEach.call(elements, function (element) {
-    element.ontouchstart = element.onmspointerdown = startDrag;
-    // Afficher les coordonnées initiales de l'élément
-    var rect = element.getBoundingClientRect();
-    console.log("Initial coordinates: ", rect.left, rect.top);
+
+  const element = document.querySelector('.test-element');
+  element.ontouchstart = element.onmspointerdown = startDrag;
+
+  var rect = element.getBoundingClientRect();
+  console.log("Initial coordinates: ", rect.left, rect.top);
 
 
-  });
+
+  ;
 
 
   document.ongesturechange = function () {
     return false;
   }
 </script>
-<?php
 
-// dump($songs);
-
-
-foreach ($songs as $song) {
-
-}
-;
-?>
 <?= foot(); ?>
