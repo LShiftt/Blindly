@@ -3,7 +3,7 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
-$qrData = "1/3/45";
+
 function search($dbh, $data)
 {
     $liked = explode('/', $data);
@@ -91,75 +91,81 @@ function readqr($dbh, $data)
 </form>
 <div id="qrCodeResult"></div>
 
+<!-- Place this just before the closing </body> tag -->
 <script>
-    const inputData =document.querySelector('.inputData');
-    // QR Code Generation
-    document.querySelector('#form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const text = document.getElementById('text').value;
-        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&data=${encodeURIComponent(text)}`;
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const inputData = document.querySelector('#inputData');
 
-        fetch(qrCodeUrl)
-            .then(response => response.blob())
-            .then(blob => {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(blob);
-                const qrCodeContainer = document.getElementById('qrCodeContainer');
-                qrCodeContainer.innerHTML = '';
-                qrCodeContainer.appendChild(img);
+        // QR Code Generation
+        document.querySelector('#form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const text = document.getElementById('text').value;
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&data=${encodeURIComponent(text)}`;
 
-                // Create download link
-                const downloadLink = document.getElementById('downloadLink');
-                downloadLink.href = img.src;
-                downloadLink.style.display = 'block';
-            })
-            .catch(error => {
-                console.error('Error generating QR code:', error);
-            });
-    });
+            fetch(qrCodeUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(blob);
+                    const qrCodeContainer = document.getElementById('qrCodeContainer');
+                    qrCodeContainer.innerHTML = '';
+                    qrCodeContainer.appendChild(img);
 
-
-    // QR Code Reading
-    document.querySelector('#readForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const fileInput = document.getElementById('qrFile');
-        const file = fileInput.files[0];
-
-        if (file) {
-            const formData = new FormData(); //??? Form Data ???
-            formData.append('file', file);
-
-            fetch('https://api.qrserver.com/v1/read-qr-code/', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const resultContainer = document.getElementById('qrCodeResult');
-                    resultContainer.innerHTML = '';
-                    if (data[0] && data[0].symbol[0] && data[0].symbol[0].data) {
-                        resultContainer.textContent = 'QR Code Data: ' + data[0].symbol[0].data;
-                        console.log('QR Code Data: ' + data[0].symbol[0].data);
-                    } else {
-                        resultContainer.textContent = 'No data found in QR code.';
-                        console.log('No data found in QR code.');
-                    }
+                    // Create download link
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = img.src;
+                    downloadLink.style.display = 'block';
                 })
                 .catch(error => {
-                    console.error('Error reading QR code:', error);
-                    document.getElementById('qrCodeResult').textContent = 'Error reading QR code.';
+                    console.error('Error generating QR code:', error);
                 });
-        }
+        });
+
+        // QR Code Reading
+        document.querySelector('#readForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('qrFile');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('https://api.qrserver.com/v1/read-qr-code/', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const resultContainer = document.getElementById('qrCodeResult');
+                        resultContainer.innerHTML = '';
+                        if (data[0] && data[0].symbol[0] && data[0].symbol[0].data) {
+                            resultContainer.textContent = 'QR Code Data: ' + data[0].symbol[0].data;
+                            inputData.value = data[0].symbol[0].data;
+                            console.log('QR Code Data: ' + data[0].symbol[0].data);
+                        } else {
+                            resultContainer.textContent = 'No data found in QR code.';
+                            console.log('No data found in QR code.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error reading QR code:', error);
+                        document.getElementById('qrCodeResult').textContent = 'Error reading QR code.';
+                    });
+            }
+        });
     });
 </script>
-<form method="post" action="">
-    <input type="hidden" class="inputData" value=""> //a finir
+<form method="POST" action="">
+    <input type="hidden" name="inputData" id="inputData" value="">
     <button type="submit" name="execute_function">Lire le contenue du qr code</button>
 </form>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['execute_function'])) {
-    readqr($dbh, $qrData);
+    dump($_POST);
+    $_POST['inputData'];
+    readqr($dbh, $_POST['inputData']);
 
 } else {
     search($dbh, $_SESSION['liked']);
