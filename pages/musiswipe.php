@@ -77,12 +77,6 @@ echo head("Blindly - MusiSwipe");
 
   var rect = element.getBoundingClientRect();
   console.log("Initial coordinates: ", rect.left, rect.top);
-
-
-
-  ;
-
-
   document.ongesturechange = function () {
     return false;
   }
