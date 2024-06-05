@@ -73,6 +73,10 @@ function readqr($dbh, $data)
 ;
 
 ?>
+<!-- Share -->
+<p>
+    <button onclick="share()">Partage le site</button>
+</p>
 <h1>QR Code Generator</h1>
 <form id="form">
     <label for="text">Text to encode:</label>
@@ -87,12 +91,29 @@ function readqr($dbh, $data)
     <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
     <label for="qrFile">Upload QR Code image:</label>
     <input type="file" id="qrFile" name="file" accept="image/*" required>
-    <button type="submit">Read QR Code</button>
+    <button type="submit">Vérifier la conformité du QR code</button>
 </form>
 <div id="qrCodeResult"></div>
 
+
+
+
 <!-- Place this just before the closing </body> tag -->
 <script>
+    function share() {
+        if (!("share" in navigator)) {
+            alert('Web Share API n\'est pas supportée, fonctionnalité incompatible avec votre navigateur');
+            return;
+        }
+
+        navigator.share({
+            title: 'Ceci est titre',
+            text: 'Ceci est un text',
+            url: 'https://mdubois.alwaysdata.net/Blindly'
+        })
+            .then(() => console.log('Successful share'))
+            .catch(error => console.log('Error sharing:', error));
+    }
     document.addEventListener('DOMContentLoaded', (event) => {
         const inputData = document.querySelector('#inputData');
 
@@ -140,7 +161,7 @@ function readqr($dbh, $data)
                         const resultContainer = document.getElementById('qrCodeResult');
                         resultContainer.innerHTML = '';
                         if (data[0] && data[0].symbol[0] && data[0].symbol[0].data) {
-                            resultContainer.textContent = 'QR Code Data: ' + data[0].symbol[0].data;
+                            resultContainer.textContent = 'QR Code Valide ';
                             inputData.value = data[0].symbol[0].data;
                             console.log('QR Code Data: ' + data[0].symbol[0].data);
                         } else {
@@ -158,23 +179,16 @@ function readqr($dbh, $data)
 </script>
 <form method="POST" action="">
     <input type="hidden" name="inputData" id="inputData" value="">
-    <button type="submit" name="execute_function">Lire le contenue du qr code</button>
+    <button type="submit" name="execute_function">Lire le contenue du QR code</button>
 </form>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['execute_function'])) {
-    dump($_POST);
     $_POST['inputData'];
     readqr($dbh, $_POST['inputData']);
 
 } else {
     search($dbh, $_SESSION['liked']);
 }
-
-
-
-
-
-
-echo foot();
 ?>
+<?= foot(); ?>
