@@ -1,0 +1,40 @@
+header{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(78, 71, 71); 
+    flex-wrap: wrap; 
+    padding: 1em 0;
+    padding-right: 12em;
+    
+ 
+}
+
+#btn-menu{
+    width: 80px;
+    min-width: 40px;
+    height: 50px; 
+    margin-left: 5%;
+    font-size: x-large;
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 7px;
+    border: none;
+    text-decoration: none;   
+}
+
+#btn-menu:hover{
+    background-color: black;
+    box-shadow: 5px 2px 5px rgba(39, 37, 37, 0.466);
+    transition: ease-in-out 0.2s;
+}
+
+
+.icone{
+    max-width: 200px;
+    min-width: 50px;
+    height: auto;
+    margin: 0 auto;
+   
+}
