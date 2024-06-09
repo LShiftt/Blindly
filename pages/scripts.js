@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
         readQRCode();
     });
+
+    updateConnectionStatus();
+    window.addEventListener('online', handleStateChange);
+    window.addEventListener('offline', handleStateChange);
 });
 
 function generateQRCode() {
@@ -84,17 +88,47 @@ function readQRCode() {
     }
 }
 
-document.getElementById('status').innerHTML = navigator.onLine ? 'en ligne' : 'hors ligne';
+function updateConnectionStatus() {
+    const statusElement = document.getElementById('status');
+    const connectionState = navigator.onLine ? 'en ligne' : 'hors ligne';
+    statusElement.innerHTML = connectionState;
 
-var target = document.getElementById('target');
+    if (!navigator.onLine) {
+        const allElements = document.body.children;
+        for (let element of allElements) {
+            if (!element.matches('p, #target')) {
+                element.style.display = 'none';
+            }
+        }
+        if (!document.getElementById('offlineImg')) {
+            const imgOffline = document.createElement('img');
+            imgOffline.src = "../media/img/a.png";
+            imgOffline.id = 'offlineImg';
+            document.body.appendChild(imgOffline);
+        }
+    } else {
+        const allElements = document.body.children;
+        for (let element of allElements) {
+            if (!element.matches('p, #target')) {
+                element.style.display = '';
+            }
+        }
+        const offlineImg = document.getElementById('offlineImg');
+        if (offlineImg) {
+            offlineImg.remove();
+        }
+    }
+}
 
 function handleStateChange() {
     var timeBadge = new Date().toTimeString().split(' ')[0];
     var newState = document.createElement('p');
     var state = navigator.onLine ? 'en ligne' : 'hors ligne';
-    newState.innerHTML = '<i class="' + (navigator.onLine ? 'gg-info' : 'gg-danger') + '"></i> ' + timeBadge + ' L\'état de votre connexion viens de changer: vous êtes maintenant ' + state + '.';
+    newState.innerHTML = '<i class="' + (navigator.onLine ? 'gg-info' : 'gg-danger') + '"></i> ' + timeBadge + ' L\'état de votre connexion vient de changer: vous êtes maintenant ' + state + '.';
+    updateConnectionStatus();
     target.appendChild(newState);
 }
 
-window.addEventListener('online', handleStateChange);
-window.addEventListener('offline', handleStateChange);
+document.getElementById('status').innerHTML = navigator.onLine ? 'en ligne' : 'hors ligne';
+var target = document.getElementById('target');
+updateConnectionStatus();

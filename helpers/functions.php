@@ -33,6 +33,8 @@ HTML_HEAD;
 function foot(): string
 {
     return <<<HTML_FOOT
+    <script src="./scripts.js"></script>
+    <script src="pages/scripts.js"></script>
 <footer>
 </footer>
 </body>
