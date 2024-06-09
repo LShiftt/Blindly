@@ -68,6 +68,32 @@ function search($dbh, $data)
     }
 }
 
+function tinder($dbh, $data) // requete where id est difféérent de data element
+{
+    $liked = explode('/', $data);
+    $whereClauses = array();
+    foreach ($liked as $value) {
+        $whereClauses[] = "id != " . intval($value);
+    }
+    $where = implode(' OR ', $whereClauses);
+
+    $sql = 'SELECT * FROM `song` WHERE ' . $data . ' ORDER BY id ASC';
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $songs = $sth->fetchAll();
+
+    foreach ($songs as $song) {
+        echo '
+  <article>
+  <h1>' . $song["genre"] . '</h1>
+  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+  <img src="' . $song["image"] . '">
+  <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
+</article>';
+    }
+}
+
 function readqr($dbh, $data)
 {
     $liked = explode('/', $data);
