@@ -3,6 +3,7 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
+// il faut remettre le cube noir au millieu de l'acran !
 
 ?>
 <style>
