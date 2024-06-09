@@ -3,7 +3,8 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
-function search($dbh, $data) {
+function search($dbh, $data)
+{
     $liked = explode('/', $data);
     $whereClauses = array();
     foreach ($liked as $value) {
@@ -28,7 +29,8 @@ function search($dbh, $data) {
     }
 }
 
-function readqr($dbh, $data) {
+function readqr($dbh, $data)
+{
     $liked = explode('/', $data);
     $whereClauses = array();
     foreach ($liked as $value) {
@@ -61,7 +63,11 @@ function readqr($dbh, $data) {
 
 <p>L'état de votre connexion est <b id="status">unknown</b>.</p>
 <div id="target"></div>
-
+<div id="offlineDiv" style="display: none;">
+    <img id="offlineImage" src="../media/img/a.png">
+    <p>Aie ...</p>
+    <?php search($dbh, $_SESSION['liked']); ?>
+</div>
 
 <h1>QR Code Generator</h1>
 <form id="form">
