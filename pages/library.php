@@ -3,7 +3,6 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
-
 function search($dbh, $data)
 {
     $liked = explode('/', $data);
@@ -14,18 +13,13 @@ function search($dbh, $data)
     }
     $where = implode(' OR ', $whereClauses);
 
-
     $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
     $sth = $dbh->prepare($sql);
     $dbh->prepare($sql);
     $sth->execute();
     $songs = $sth->fetchAll();
 
-    // dump($songs);
-
-
     foreach ($songs as $song) {
-        // il faut trier les chansons récup par genre puis les affichées 
         echo '
   <article>
   <h1>' . $song["genre"] . '</h1>
@@ -35,11 +29,9 @@ function search($dbh, $data)
   <p>' . $song["url"] . '</p>
 </article>';
     }
-    ;
 }
 function readqr($dbh, $data)
 {
-    //ajouter avec des inputs aux favories
     $liked = explode('/', $data);
 
     $whereClauses = array();
@@ -48,17 +40,13 @@ function readqr($dbh, $data)
     }
     $where = implode(' OR ', $whereClauses);
 
-
     $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
     $sth = $dbh->prepare($sql);
     $dbh->prepare($sql);
     $sth->execute();
     $songs = $sth->fetchAll();
 
-    // dump($songs);
-
     foreach ($songs as $song) {
-
         echo '
   <article>
   <h1>' . $song["genre"] . '</h1>
@@ -68,11 +56,9 @@ function readqr($dbh, $data)
   <p>' . $song["url"] . '</p>
 </article>';
     }
-    ;
 }
-;
-
 ?>
+
 <!-- Share -->
 <p>
     <button onclick="share()">Partage le site</button>
@@ -94,99 +80,21 @@ function readqr($dbh, $data)
     <button type="submit">Vérifier la conformité du QR code</button>
 </form>
 <div id="qrCodeResult"></div>
-
-
-
-
-<!-- Place this just before the closing </body> tag -->
-<script>
-    function share() {
-        if (!("share" in navigator)) {
-            alert('Web Share API n\'est pas supportée, fonctionnalité incompatible avec votre navigateur');
-            return;
-        }
-
-        navigator.share({
-            title: 'Ceci est titre',
-            text: 'Ceci est un text',
-            url: 'https://mdubois.alwaysdata.net/Blindly'
-        })
-            .then(() => console.log('Successful share'))
-            .catch(error => console.log('Error sharing:', error));
-    }
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const inputData = document.querySelector('#inputData');
-
-        // QR Code Generation
-        document.querySelector('#form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const text = document.getElementById('text').value;
-            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&data=${encodeURIComponent(text)}`;
-
-            fetch(qrCodeUrl)
-                .then(response => response.blob())
-                .then(blob => {
-                    const img = document.createElement('img');
-                    img.src = URL.createObjectURL(blob);
-                    const qrCodeContainer = document.getElementById('qrCodeContainer');
-                    qrCodeContainer.innerHTML = '';
-                    qrCodeContainer.appendChild(img);
-
-                    // Create download link
-                    const downloadLink = document.getElementById('downloadLink');
-                    downloadLink.href = img.src;
-                    downloadLink.style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error generating QR code:', error);
-                });
-        });
-
-        // QR Code Reading
-        document.querySelector('#readForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const fileInput = document.getElementById('qrFile');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const formData = new FormData();
-                formData.append('file', file);
-
-                fetch('https://api.qrserver.com/v1/read-qr-code/', {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        const resultContainer = document.getElementById('qrCodeResult');
-                        resultContainer.innerHTML = '';
-                        if (data[0] && data[0].symbol[0] && data[0].symbol[0].data) {
-                            resultContainer.textContent = 'QR Code Valide ';
-                            inputData.value = data[0].symbol[0].data;
-                            console.log('QR Code Data: ' + data[0].symbol[0].data);
-                        } else {
-                            resultContainer.textContent = 'No data found in QR code.';
-                            console.log('No data found in QR code.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error reading QR code:', error);
-                        document.getElementById('qrCodeResult').textContent = 'Error reading QR code.';
-                    });
-            }
-        });
-    });
-</script>
 <form method="POST" action="">
     <input type="hidden" name="inputData" id="inputData" value="">
     <button type="submit" name="execute_function">Lire le contenue du QR code</button>
 </form>
 
+
+<p>L'état de votre connexion est <b id="status">unknown</b>.</p>
+<div id="target"></div>
+
+<script src="./scripts.js"></script>
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['execute_function'])) {
     $_POST['inputData'];
     readqr($dbh, $_POST['inputData']);
-
 } else {
     search($dbh, $_SESSION['liked']);
 }
