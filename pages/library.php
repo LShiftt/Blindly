@@ -61,6 +61,7 @@ function readqr($dbh, $data)
     <button onclick="share()">Partage le site</button>
 </p>
 
+<!-- offline -->
 <p>L'état de votre connexion est <b id="status">unknown</b>.</p>
 <div id="target"></div>
 <div id="offlineDiv" style="display: none;">
