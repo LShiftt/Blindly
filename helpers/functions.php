@@ -42,6 +42,58 @@ function foot(): string
 HTML_FOOT;
 }
 
+function search($dbh, $data)
+{
+    $liked = explode('/', $data);
+    $whereClauses = array();
+    foreach ($liked as $value) {
+        $whereClauses[] = "id = " . intval($value);
+    }
+    $where = implode(' OR ', $whereClauses);
+
+    $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $songs = $sth->fetchAll();
+
+    foreach ($songs as $song) {
+        echo '
+  <article>
+  <h1>' . $song["genre"] . '</h1>
+  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+  <img src="' . $song["image"] . '">
+  <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
+</article>';
+    }
+}
+
+function readqr($dbh, $data)
+{
+    $liked = explode('/', $data);
+    $whereClauses = array();
+    foreach ($liked as $value) {
+        $whereClauses[] = "id = " . intval($value);
+    }
+    $where = implode(' OR ', $whereClauses);
+
+    $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $songs = $sth->fetchAll();
+
+    foreach ($songs as $song) {
+        echo '
+  <article>
+  <h1>' . $song["genre"] . '</h1>
+  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+  <img src="' . $song["image"] . '">
+  <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
+</article>';
+    }
+}
+
 function validateDate($date, $format = 'Y-m-d'): bool
 {
     // replace a 'Z' at the end by '+00:00'

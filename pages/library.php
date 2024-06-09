@@ -3,57 +3,7 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
-function search($dbh, $data)
-{
-    $liked = explode('/', $data);
-    $whereClauses = array();
-    foreach ($liked as $value) {
-        $whereClauses[] = "id = " . intval($value);
-    }
-    $where = implode(' OR ', $whereClauses);
 
-    $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $songs = $sth->fetchAll();
-
-    foreach ($songs as $song) {
-        echo '
-  <article>
-  <h1>' . $song["genre"] . '</h1>
-  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-  <img src="' . $song["image"] . '">
-  <audio controls src="' . $song["url"] . '" ></audio>
-  <p>' . $song["url"] . '</p>
-</article>';
-    }
-}
-
-function readqr($dbh, $data)
-{
-    $liked = explode('/', $data);
-    $whereClauses = array();
-    foreach ($liked as $value) {
-        $whereClauses[] = "id = " . intval($value);
-    }
-    $where = implode(' OR ', $whereClauses);
-
-    $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
-    $sth = $dbh->prepare($sql);
-    $sth->execute();
-    $songs = $sth->fetchAll();
-
-    foreach ($songs as $song) {
-        echo '
-  <article>
-  <h1>' . $song["genre"] . '</h1>
-  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-  <img src="' . $song["image"] . '">
-  <audio controls src="' . $song["url"] . '" ></audio>
-  <p>' . $song["url"] . '</p>
-</article>';
-    }
-}
 ?>
 
 <!-- Share -->
@@ -62,7 +12,7 @@ function readqr($dbh, $data)
 </p>
 
 <!-- offline -->
-<p>L'état de votre connexion est <b id="status">unknown</b>.</p>
+<p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
 <div id="target"></div>
 <div id="offlineDiv" style="display: none;">
     <img id="offlineImage" src="../media/img/a.png">

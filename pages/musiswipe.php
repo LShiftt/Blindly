@@ -1,6 +1,8 @@
 <?php
+session_start();
 require '../bootstrap.php';
-echo head("Blindly - MusiSwipe");
+echo head("Blindly - Musiswipe");
+
 
 ?>
 <style>
@@ -17,8 +19,20 @@ echo head("Blindly - MusiSwipe");
     -ms-touch-action: none;
   }
 </style>
+
+<!-- offline -->
+<p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+<div id="target"></div>
+<div id="offlineDiv" style="display: none;">
+    <img id="offlineImage" src="../media/img/a.png">
+    <p>Aie ...</p>
+    <?php search($dbh, $_SESSION['liked']); ?>
+</div>
+
+
 <div class="test-element">Element</div>
 <input class="text" type="text">
+
 <script>
   const text = document.querySelector('.text');
   function startDrag(e) {
