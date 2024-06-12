@@ -3,7 +3,9 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
+$id = 8;
 ?>
+
 <style>
   .test-element {
     height: 100px;
@@ -26,27 +28,23 @@ echo head("Blindly - Musiswipe");
     <img id="offlineImage" src="../media/img/a.png">
     <p>Aie ...</p>
     <?php search($dbh, $_SESSION['liked']); ?>
-    
 </div>
-
 
 <div class="test-element">Element</div>
 <input class="text" type="text">
 
-<form id="saveLiked" action="./index.php" method="get">
+<form id="saveLiked" action="../index.php" method="get">
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
 </form>
 
-
-
 <script>
-  const form = document.getElementById(saveLiked);
-  const formLiked = document.getElementById(liked);
-  const formDisliked = document.getElementById(disliked);
+  const form = document.getElementById("saveLiked");
+  const formLiked = document.getElementById("liked");
+  const formDisliked = document.getElementById("disliked");
   const text = document.querySelector('.text');
-  function startDrag(e) {
 
+  function startDrag(e) {
     this.ontouchmove = this.onmspointermove = moveDrag;
 
     this.ontouchend = this.onmspointerup = function () {
@@ -58,7 +56,6 @@ echo head("Blindly - Musiswipe");
     text.value = pos;
     var that = this;
     var origin = getCoors(e);
-
 
     function moveDrag(e) {
       var currentPos = getCoors(e);
@@ -73,8 +70,9 @@ echo head("Blindly - Musiswipe");
         that.style.color = "white";
       } else {
         that.style.color = "red";
-        formLiked.value =+ "/8";
-        form.submit();
+        formLiked.value = "<?= $id ?>/";
+        
+        form.submit();  // Submit the form when condition is not met
       }
 
       return false;
@@ -92,9 +90,6 @@ echo head("Blindly - Musiswipe");
       }
       console.log("Coors 2 " + coors);
       return coors;
-    }
-    function nextPage(e) {
-
     }
   }
 
