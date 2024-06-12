@@ -33,8 +33,8 @@ HTML_HEAD;
 function foot(): string
 {
     return <<<HTML_FOOT
-    <script src="/assets/js/scripts.js"></script>
-    <script src="../assets/js/scripts.js"></script>
+    <script src="./scripts.js"></script>
+    <script src="pages/scripts.js"></script>
 <footer>
 </footer>
 </body>
@@ -63,32 +63,36 @@ function search($dbh, $data)
   <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
   <img src="' . $song["image"] . '">
   <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
 </article>';
     }
 }
 
-function tinder($dbh, $data)
+function tinder($dbh, $data) // requete where id est différent de data element
 {
     $liked = explode('/', $data);
-    $placeholders = implode(',', array_fill(0, count($liked), '?'));
-    $sql = 'SELECT * FROM `song` WHERE id NOT IN (' . $placeholders . ') ORDER BY id ASC LIMIT 1';
+    $whereClauses = array();
+    foreach ($liked as $value) {
+        $whereClauses[] = "id != " . intval($value);
+    }
+    $where = implode(' OR ', $whereClauses);
+
+    $sql = 'SELECT * FROM `song` WHERE ' . $data . ' ORDER BY id ASC';
     $sth = $dbh->prepare($sql);
-    $sth->execute($liked);
-    $song = $sth->fetch();
-    
-    if ($song) {
+    $sth->execute();
+    $songs = $sth->fetchAll();
+
+    foreach ($songs as $song) {
         echo '
-        <article class="test-element">
-            <h1>' . $song["genre"] . '</h1>
-            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-            <img src="' . $song["image"] . '">
-            <audio controls src="' . $song["url"] . '"></audio>
-        </article>';
-    } else {
-        echo '<p>Vous avez fini le test</p>';
+  <article>
+  <h1>' . $song["genre"] . '</h1>
+  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+  <img src="' . $song["image"] . '">
+  <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
+</article>';
     }
 }
-
 
 function readqr($dbh, $data)
 {
@@ -106,12 +110,13 @@ function readqr($dbh, $data)
 
     foreach ($songs as $song) {
         echo '
-        <article class="test-element">
-            <h1>' . $song["genre"] . '</h1>
-            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-            <img src="' . $song["image"] . '">
-            <audio controls src="' . $song["url"] . '"></audio>
-        </article>';
+  <article>
+  <h1>' . $song["genre"] . '</h1>
+  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+  <img src="' . $song["image"] . '">
+  <audio controls src="' . $song["url"] . '" ></audio>
+  <p>' . $song["url"] . '</p>
+</article>';
     }
 }
 

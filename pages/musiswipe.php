@@ -8,16 +8,22 @@ $id = 8;
 
 <style>
   .test-element {
-    height: 100px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+
+    
     background-color: black;
-    width: 100px;
     z-index: 5;
     position: absolute;
-    top: 40vh;
-    left: 49vw;
+    top: 35vh;
+    left: 35vw;
     color: white;
     text-align: center;
     -ms-touch-action: none;
+
+    padding: 1REM;
   }
 </style>
 
@@ -30,7 +36,8 @@ $id = 8;
     <?php search($dbh, $_SESSION['liked']); ?>
 </div>
 
-<div class="test-element">Element</div>
+<?php tinder($dbh, $_SESSION['liked']) ?>
+
 <input class="text" type="text">
 
 <form id="saveLiked" action="../index.php" method="get">
@@ -67,11 +74,10 @@ $id = 8;
       var regex = '-';
 
       if (deltaXString.search(regex) !== -1) {
-        that.style.color = "white";
+        console.log("Disliked");
       } else {
-        that.style.color = "red";
         formLiked.value = "<?= $id ?>/";
-        
+
         form.submit();  // Submit the form when condition is not met
       }
 
