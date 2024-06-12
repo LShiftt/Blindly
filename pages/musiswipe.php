@@ -74,7 +74,7 @@ echo head("Blindly - Musiswipe");
       } else {
         that.style.color = "red";
         formLiked.value =+ "/8";
-        
+        form.submit();
       }
 
       return false;
