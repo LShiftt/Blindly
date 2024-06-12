@@ -1,0 +1,51 @@
+header{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border-bottom: 2px solid rgb(78, 71, 71); 
+    padding: 1.5em 0;
+    
+    
+ 
+}
+
+#btn-menu-open{
+    width: 80px;
+    min-width: 75px;
+    height: 50px; 
+    position: fixed;
+    z-index: 0;
+    margin-left: 3%;
+    font-size: x-large;
+    background-color: var(--button-background);
+    color: var( --button-color);
+    border-radius: 7px;
+    border: none;
+    text-decoration: none; 
+
+}
+
+#btn-menu-open:hover{
+    background-color: var(--button-hover-background);
+    color: var(--button-hover-color);
+    box-shadow: 5px 2px 5px rgba(39, 37, 37, 0.466);
+    transition: ease-in-out 0.2s;
+}
+
+
+#icone--header{
+    max-width: 200px;
+    min-width: 50px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 400px) {
+    #btn-menu-open{
+       position: relative;
+    
+    }
+    
+}

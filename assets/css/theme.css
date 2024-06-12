@@ -1,0 +1,42 @@
+:root {
+    /*background dark theme*/
+    --background-color: #fff;
+    --text-color: #121416d8;
+
+    /*Buttons without hover*/
+    --button-background: #121416d8;
+    --button-color: #fff;
+
+    /*Buttons with hover*/
+    --button-hover-background: #fff;
+    --button-hover-color: #121416d8;
+}
+
+html[data-theme='light'] {
+    /*background dark theme*/
+    --background-color: #fff;
+    --text-color: #121416d8;
+
+    /*Buttons without hover*/
+    --button-background: #121416;
+    --button-color: #fff;
+
+    /*Buttons with hover*/
+    --button-hover-background: #fff;
+    --button-hover-color: #121416d8;
+
+}
+
+html[data-theme='dark'] {
+    /*background dark theme*/
+    --background-color: #2a2d31;
+    --text-color: #fff;
+
+    /*Buttons without hover*/
+    --button-background: #fff;
+    --button-color: #121416d8;
+
+    /*Buttons with hover*/
+    --button-hover-background: #32383fd8;
+    --button-hover-color: #fff;
+}

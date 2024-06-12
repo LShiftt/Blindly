@@ -1,0 +1,27 @@
+footer{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 0;
+    bottom: 0vh;
+
+
+    border-top: 2px solid rgb(78, 71, 71);
+    padding: 1.5em;
+}
+
+footer>a, footer>p {
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+    color: var( --text-color);
+}
+
+footer>p:first-child{
+    font-weight: bold;
+    font-size: x-large;
+}
