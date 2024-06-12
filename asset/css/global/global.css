@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    transition: ease-in-out 0.1s;
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.dark{
+    transform: translateX(200%);
+    transition: ease-in-out 0.5s;
+}
+.light{
+    transform: translateX(0%);
+    transition: ease-in-out 0.5s;
+}

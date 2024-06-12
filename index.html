@@ -1,25 +1,62 @@
-<!DOCTYPE html>
+<!DOCTYPE html data-theme='light'>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./asset/css/global.css">
-    <link rel="stylesheet" href="./asset/css/header.css">
-    <link rel="stylesheet" href="./asset/css/nav.css">
+    <link rel="stylesheet" href="./asset/css/global/global.css">
+    <link rel="stylesheet" href="./asset/css/global/header.css">
+    <link rel="stylesheet" href="./asset/css/global/nav.css">
+    <link rel="stylesheet" href="./asset/css/global/footer.css">
+    <link rel="stylesheet" href="./asset/css/global/theme.css">
+
+    <link rel="stylesheet" href="./asset/css/index.css">
+
+    
+    <script src="https://kit.fontawesome.com/1ce9ab38cd.js" crossorigin="anonymous"></script>
 
     <title>Blindly</title>
 </head>
-<body>
-    <header>
-        <button id="btn-menu">Menu</button>
-        <img src="./asset/media/img/logoFondBlanc.png" alt="Icone Blindly" class="icone">
-    </header>
-    <nav>
-        <ul>
-            <li>
-                
-            </li>
-        </ul>
+<body >
+    <nav id="nav" popover>
+        <a href="./index.php"><img src="./asset/media/img/logoFondBlanc.png" alt="Icone Blindly" class="icone" id="nav--icone"></a>
+        <div class="nav--menu">
+            <a href="" class="nav--menu--link">
+                <i class="fa-solid fa-heart-circle-plus"  style="color:var( --text-color);"></i>
+                <p>MusiSwipe</p>
+            </a>
+            <a href="" class="nav--menu--link">
+                <i class="fa-solid fa-folder-tree" style="color:var( --text-color);"></i>
+                <p>Discovery</p>
+            </a>
+            <a href="" class="nav--menu--link">
+                <i class="fa-solid fa-folder" style="color: var( --text-color);"></i>
+                <p>Librairie</p>
+            </a>
+        </div>
+        <button id="btn-menu-close" popovertarget="nav" popovertargetaction="hide"><i class="fa-solid fa-xmark"></i></button>
+        <div class="nav--luminosity">
+            <i class="fa-solid fa-sun" style="color:var( --text-color);"></i>
+        </div>
     </nav>
+    <header>
+        <button id="btn-menu-open" popovertarget="nav" popovertargetaction="show">Menu</button>
+        <img src="./asset/media/img/logoFondBlanc.png" alt="Icone Blindly" class="icone" id="icone--header">
+    </header>
+
+    <main>
+        <h1>Bienvenue sur Blindly </h1>
+        <p>
+           Dans un monde où les options musicales sont infinies, trouver de  nouvelles chansons qui correspondent à vos goûts peut être un véritable  défi. C’est pourquoi nous avons créé <span class="bold">Blindly</span>,  l'application révolutionnaire qui transforme la découverte musicale en  une expérience ludique et personnalisée, inspirée du célèbre modèle de  Tinder.
+        </p>
+    </main>
+
+
+    <footer>
+        <p>Blindly</p>
+        <a href=""><p>Mentions légales</p></a>
+        <p>Création par Cédric Tanghe et Mathis Dubois</p>
+    </footer>
+
+    <script src="./asset/js/luminosity.js"></script>
 </body>
 </html>
