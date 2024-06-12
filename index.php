@@ -4,6 +4,7 @@ require './bootstrap.php';
 echo head("home");
 
 $_SESSION['liked'] = '5/6/14/23';
+dump($_GET['liked']);
 ?>
     <a href="./pages/musiswipe.php" role="button">Musiswipe</a>
     <a href="./pages/library.php" role="button">Librairie</a>

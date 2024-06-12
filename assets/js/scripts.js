@@ -12,7 +12,6 @@ function share() {
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing:', error));
 }
-
 document.addEventListener('DOMContentLoaded', (event) => {
     const inputData = document.querySelector('#inputData');
 

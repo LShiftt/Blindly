@@ -65,7 +65,7 @@ echo head("Blindly - Musiswipe");
 
       } else {
         that.style.color = "red";
-        document.location.href="../index.php&like=22"; //on est ici
+        document.location.href="../index.php&liked=22"; //on est ici
       }
 
       return false;
