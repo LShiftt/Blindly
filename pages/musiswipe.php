@@ -2,7 +2,6 @@
 session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
-// il faut remettre le cube noir au millieu de l'acran !
 
 ?>
 <style>
@@ -34,7 +33,17 @@ echo head("Blindly - Musiswipe");
 <div class="test-element">Element</div>
 <input class="text" type="text">
 
+<form id="saveLiked" action="./index.php" method="get">
+  <input id="liked" type="hidden" name="liked" value="">
+  <input id="disliked" type="hidden" name="disliked" value="">
+</form>
+
+
+
 <script>
+  const form = document.getElementById(saveLiked);
+  const formLiked = document.getElementById(liked);
+  const formDisliked = document.getElementById(disliked);
   const text = document.querySelector('.text');
   function startDrag(e) {
 
@@ -62,10 +71,10 @@ echo head("Blindly - Musiswipe");
 
       if (deltaXString.search(regex) !== -1) {
         that.style.color = "white";
-
       } else {
         that.style.color = "red";
-        document.location.href="../index.php&liked=22"; //on est ici
+        formLiked.value =+ "/8";
+        
       }
 
       return false;
