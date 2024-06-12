@@ -2,7 +2,6 @@
 session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
-
 // il faut remettre le cube noir au millieu de l'acran !
 
 ?>
@@ -28,6 +27,7 @@ echo head("Blindly - Musiswipe");
     <img id="offlineImage" src="../media/img/a.png">
     <p>Aie ...</p>
     <?php search($dbh, $_SESSION['liked']); ?>
+    
 </div>
 
 
@@ -62,8 +62,10 @@ echo head("Blindly - Musiswipe");
 
       if (deltaXString.search(regex) !== -1) {
         that.style.color = "white";
+
       } else {
         that.style.color = "red";
+        document.location.href="../index.php";
       }
 
       return false; // cancels scrolling

@@ -68,7 +68,7 @@ function search($dbh, $data)
     }
 }
 
-function tinder($dbh, $data) // requete where id est difféérent de data element
+function tinder($dbh, $data) // requete where id est différent de data element
 {
     $liked = explode('/', $data);
     $whereClauses = array();
