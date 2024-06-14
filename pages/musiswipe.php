@@ -11,12 +11,12 @@ echo head("Blindly - Musiswipe");
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
 
   $_SESSION['liked'] .= "/" . strval($_GET['liked']);
-  dump($_SESSION);
+  // dump($_SESSION);
 
 } elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['disliked'])) {
 
   $_SESSION['disliked'] .= "/" . strval($_GET['disliked']);
-  dump($_SESSION);
+  // dump($_SESSION);
 }
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     align-items: center;
 
 
+    max-width: 150px;
     background-color: black;
     z-index: 5;
     position: absolute;
@@ -62,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 </div>
 
 <?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
-dump($id)
+// dump($id)
   ?>
 
 <div id="options">
@@ -78,8 +79,12 @@ dump($id)
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
 </form>
-
+<input id="la"></input>
+<input id="le"></input>
 <script>
+  const la = document.getElementById("la");
+  const le = document.getElementById("la");
+
   const form = document.getElementById("saveLiked");
   const formLiked = document.getElementById("liked");
   const formDisliked = document.getElementById("disliked");
@@ -98,49 +103,38 @@ dump($id)
 
     function moveDrag(e) {
       var currentPos = getCoors(e);
+      var leftInitial = this.style.left;
+      la.value = leftInitial;
       var deltaX = currentPos[0] - origin[0];
       var deltaY = currentPos[1] - origin[1];
       this.style.left = (pos[0] + deltaX) + 'px';
       this.style.top = (pos[1] + deltaY) + 'px';
       var deltaXString = deltaX.toString();
-      var regex = '-';
 
-      if (deltaXString.search(regex) !== -1) {
-        formDisliked.value = "<?= $id ?>";
-        form.submit();
-        // 1 second delay
-        setTimeout(function () {
-          console.log("Executed after 1 second");
-        }, 1000);
-        return false;
-
-      } else {
-        formLiked.value = "<?= $id ?>";
-        form.submit();
-        // 1 second delay
-        setTimeout(function () {
-          console.log("Executed after 1 second");
-        }, 1000);
-        return false;
+      if (pos[0] + deltaX <= -120) {
+        le.value = "Pas aimé";
+      }else if (pos[0] + deltaX >= 120) {
+        le.value = "Aimé";
+      }else if (pos[0] + deltaX >= -50 && pos[0] + deltaX <= 50) {
+        le.value = "Neutre";
       }
-
-
-    }
-
-    function getCoors(e) {
-      var coors = [];
-      if (e.targetTouches && e.targetTouches.length) {
-        var thisTouch = e.targetTouches[0];
-        coors[0] = thisTouch.clientX;
-        coors[1] = thisTouch.clientY;
-      } else {
-        coors[0] = e.clientX;
-        coors[1] = e.clientY;
-      }
-      console.log("Coors 2 " + coors);
-      return coors;
     }
   }
+
+  function getCoors(e) {
+    var coors = [];
+    if (e.targetTouches && e.targetTouches.length) {
+      var thisTouch = e.targetTouches[0];
+      coors[0] = thisTouch.clientX;
+      coors[1] = thisTouch.clientY;
+    } else {
+      coors[0] = e.clientX;
+      coors[1] = e.clientY;
+    }
+    console.log("Coors 2 " + coors);
+    return coors;
+  }
+
 
   const element = document.querySelector('.test-element');
   element.ontouchstart = element.onmspointerdown = startDrag;
