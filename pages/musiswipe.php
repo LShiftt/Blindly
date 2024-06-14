@@ -46,8 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     color: white;
     text-align: center;
     -ms-touch-action: none;
-
     padding: 1REM;
+
+    overflow: hidden;
+    white-space: nowrap;
   }
 </style>
 
@@ -64,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
 <?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
 // dump($id)
-  ?>
+?>
 
 <div id="options">
   <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
@@ -88,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
   const form = document.getElementById("saveLiked");
   const formLiked = document.getElementById("liked");
   const formDisliked = document.getElementById("disliked");
+  let isFormSubmitted = false;
 
   function startDrag(e) {
+    if (isFormSubmitted) return;
     this.ontouchmove = this.onmspointermove = moveDrag;
 
     this.ontouchend = this.onmspointerup = function () {
@@ -113,9 +117,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
       if (pos[0] + deltaX <= -120) {
         le.value = "Pas aimé";
-      }else if (pos[0] + deltaX >= 120) {
+        formDisliked.value = "<?= $id ?>";
+        form.submit();
+        isFormSubmitted = true;
+      } else if (pos[0] + deltaX >= 120) {
         le.value = "Aimé";
-      }else if (pos[0] + deltaX >= -50 && pos[0] + deltaX <= 50) {
+        formLiked.value = "<?= $id ?>";
+        form.submit();
+        isFormSubmitted = true;
+      } else if (pos[0] + deltaX >= -50 && pos[0] + deltaX <= 50) {
         le.value = "Neutre";
       }
     }
