@@ -4,8 +4,7 @@ require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
 
-// $_SESSION['liked'] = '';
-// $_SESSION['disliked'] = '';
+
 // dump($_SESSION);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {

@@ -2,6 +2,8 @@
 session_start();
 require './bootstrap.php';
 echo head("home");
+$_SESSION['liked'] = '';
+$_SESSION['disliked'] = '';
 ?>
 
 
