@@ -4,20 +4,27 @@ require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
 
-$_SESSION['liked'] = '';
-$_SESSION['disliked'] = '';
+// $_SESSION['liked'] = '';
+// $_SESSION['disliked'] = '';
 // dump($_SESSION);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
 
-  $_SESSION['liked'] .= "/".strval($_GET['liked']);
+  $_SESSION['liked'] .= "/" . strval($_GET['liked']);
   dump($_SESSION);
 
 } elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['disliked'])) {
 
-  $_SESSION['disliked'] .= "/".strval($_GET['disliked']);
+  $_SESSION['disliked'] .= "/" . strval($_GET['disliked']);
   dump($_SESSION);
 }
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
+
+  $_SESSION['liked'] = '';
+  $_SESSION['disliked'] = '';
+
+}
+
 
 
 ?>
@@ -29,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
     justify-content: center;
     align-items: center;
 
-    
+
     background-color: black;
     z-index: 5;
     position: absolute;
@@ -49,14 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
 <div id="target"></div>
 
 <div id="offlineDiv" style="display: none;">
-    <img id="offlineImage" src="../media/img/a.png">
-    <p>Aie ...</p>
-    <?php search($dbh, $_SESSION['liked']); ?>
+  <img id="offlineImage" src="../media/img/a.png">
+  <p>Aie ...</p>
+  <?php search($dbh, $_SESSION['liked']); ?>
 </div>
 
-<?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked'] );
+<?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
 dump($id)
-?>
+  ?>
 
 <div id="options">
   <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
@@ -66,6 +73,10 @@ dump($id)
 <form id="saveLiked" action="" method="get">
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
+</form>
+<form action="" method="get">
+  <input id="disliked" type="hidden" name="reset" value="1">
+  <button type="submit">Reset liked et disliked</button>
 </form>
 
 <script>
@@ -95,15 +106,25 @@ dump($id)
       var regex = '-';
 
       if (deltaXString.search(regex) !== -1) {
-       formDisliked.value = "<?= $id ?>";
+        formDisliked.value = "<?= $id ?>";
         form.submit();
+        // 1 second delay
+        setTimeout(function () {
+          console.log("Executed after 1 second");
+        }, 1000);
+        return false;
 
       } else {
         formLiked.value = "<?= $id ?>";
         form.submit();
+        // 1 second delay
+        setTimeout(function () {
+          console.log("Executed after 1 second");
+        }, 1000);
+        return false;
       }
 
-      return false;
+
     }
 
     function getCoors(e) {

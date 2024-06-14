@@ -145,7 +145,7 @@ function search($dbh, $data)
     $sth->execute();
     $songs = $sth->fetchAll();
 
-    foreach ($songs as $song) {
+    foreach ($songs as $song) { // rangé par genre
         echo '
   <article>
   <h1>' . $song["genre"] . '</h1>
