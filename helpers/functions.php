@@ -67,15 +67,24 @@ function search($dbh, $data)
     }
 }
 
-function tinder($dbh, $data)
+function tinder($dbh, $data, $data2)
 {
+    // Convertir les données en tableaux
     $liked = explode('/', $data);
-    $placeholders = implode(',', array_fill(0, count($liked), '?'));
-    $sql = 'SELECT * FROM `song` WHERE id NOT IN (' . $placeholders . ') ORDER BY id ASC LIMIT 1';
+    $disliked = explode('/', $data2);
+
+    // Créer les placeholders pour les IDs
+    $placeholders = implode(',', array_fill(0, count($liked) + count($disliked), '?'));
+
+    // Fusionner les tableaux liked et disliked pour les utiliser dans la requête
+    $all = array_merge($liked, $disliked);
+
+    // Requête SQL pour sélectionner une chanson aléatoire qui n'est ni likée ni dislikée
+    $sql = 'SELECT * FROM `song` WHERE id NOT IN (' . $placeholders . ') ORDER BY RAND() LIMIT 1';
     $sth = $dbh->prepare($sql);
-    $sth->execute($liked);
+    $sth->execute($all);
     $song = $sth->fetch();
-    
+
     if ($song) {
         echo '
         <article class="test-element">
@@ -84,6 +93,7 @@ function tinder($dbh, $data)
             <img src="' . $song["image"] . '">
             <audio controls src="' . $song["url"] . '"></audio>
         </article>';
+        return $id = $song["id"];
     } else {
         echo '<p>Vous avez fini le test</p>';
     }
