@@ -5,11 +5,10 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    z-index: 0;
-    bottom: 0vh;
 
 
+
+    background-color:  var(--background-color);
     border-top: 2px solid rgb(78, 71, 71);
     padding: 1.5em;
 }
