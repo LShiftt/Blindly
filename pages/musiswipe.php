@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 <input id="le"></input>
 <script>
   const la = document.getElementById("la");
-  const le = document.getElementById("la");
+  const le = document.getElementById("le");
 
   const form = document.getElementById("saveLiked");
   const formLiked = document.getElementById("liked");
