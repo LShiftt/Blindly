@@ -111,9 +111,9 @@ function updateConnectionStatus() {
 
 function handleStateChange() {
     const timeBadge = new Date().toTimeString().split(' ')[0];
-    const newState = document.createElement('p');
+    const newState = document.getElementById('state');
     const state = navigator.onLine ? 'en ligne' : 'hors ligne';
-    newState.innerHTML = '<i class="' + (navigator.onLine ? 'gg-info' : 'gg-danger') + '"></i> ' + timeBadge + ' L\'état de votre connexion viens de changer: vous êtes maintenant ' + state + '.';
+    newState.innerHTML = timeBadge + ' L\'état de votre connexion viens de changer: vous êtes maintenant ' + state + '.';
     updateConnectionStatus();
     document.getElementById('target').appendChild(newState);
 }

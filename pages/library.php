@@ -13,6 +13,7 @@ echo head("Blindly - Librairie");
 
 <!-- offline -->
 <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+<p id="state"></p>
 <div id="target"></div>
 <div id="offlineDiv" style="display: none;">
     <img id="offlineImage" src="../media/img/a.png">

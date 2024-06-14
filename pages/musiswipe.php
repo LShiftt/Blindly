@@ -3,7 +3,23 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
-$id = 8;
+
+$_SESSION['liked'] = '';
+$_SESSION['disliked'] = '';
+// dump($_SESSION);
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
+
+  $_SESSION['liked'] .= "/".strval($_GET['liked']);
+  dump($_SESSION);
+
+} elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['disliked'])) {
+
+  $_SESSION['disliked'] .= "/".strval($_GET['disliked']);
+  dump($_SESSION);
+}
+
+
 ?>
 
 <style>
@@ -29,18 +45,25 @@ $id = 8;
 
 <!-- offline -->
 <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+<p id="state"></p>
 <div id="target"></div>
+
 <div id="offlineDiv" style="display: none;">
     <img id="offlineImage" src="../media/img/a.png">
     <p>Aie ...</p>
     <?php search($dbh, $_SESSION['liked']); ?>
 </div>
 
-<?php tinder($dbh, $_SESSION['liked']) ?>
+<?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked'] );
+dump($id)
+?>
 
-<input class="text" type="text">
+<div id="options">
+  <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
+  <a href="./musiswipe.php?disliked=<?= $id ?>">Je n'aime pas</a>
+</div>
 
-<form id="saveLiked" action="../index.php" method="get">
+<form id="saveLiked" action="" method="get">
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
 </form>
@@ -49,7 +72,6 @@ $id = 8;
   const form = document.getElementById("saveLiked");
   const formLiked = document.getElementById("liked");
   const formDisliked = document.getElementById("disliked");
-  const text = document.querySelector('.text');
 
   function startDrag(e) {
     this.ontouchmove = this.onmspointermove = moveDrag;
@@ -60,7 +82,6 @@ $id = 8;
     }
 
     var pos = [this.offsetLeft, this.offsetTop];
-    text.value = pos;
     var that = this;
     var origin = getCoors(e);
 
@@ -74,11 +95,12 @@ $id = 8;
       var regex = '-';
 
       if (deltaXString.search(regex) !== -1) {
-        console.log("Disliked");
-      } else {
-        formLiked.value = "<?= $id ?>/";
+       formDisliked.value = "<?= $id ?>";
+        form.submit();
 
-        form.submit();  // Submit the form when condition is not met
+      } else {
+        formLiked.value = "<?= $id ?>";
+        form.submit();
       }
 
       return false;
