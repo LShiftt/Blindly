@@ -133,7 +133,7 @@ HTML_FOOT;
 
 function search($dbh, $data)
 {
-    $liked = explode('/', $data);
+    $liked = str_getcsv($data, '/');
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
@@ -145,30 +145,27 @@ function search($dbh, $data)
     $sth->execute();
     $songs = $sth->fetchAll();
 
-    foreach ($songs as $song) { // rangé par genre
+    foreach ($songs as $song) {
         echo '
-  <article>
-  <h1>' . $song["genre"] . '</h1>
-  <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-  <img src="' . $song["image"] . '">
-  <audio controls src="' . $song["url"] . '" ></audio>
-</article>';
+        <article>
+            <h1>' . $song["genre"] . '</h1>
+            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+            <img src="' . $song["image"] . '">
+            <audio controls src="' . $song["url"] . '" ></audio>
+        </article>';
     }
 }
 
+
 function tinder($dbh, $data, $data2)
 {
-    // Convertir les données en tableaux
-    $liked = explode('/', $data);
-    $disliked = explode('/', $data2);
+    $liked = str_getcsv($data, '/');
+    $disliked = str_getcsv($data2, '/');
 
-    // Créer les placeholders pour les IDs
     $placeholders = implode(',', array_fill(0, count($liked) + count($disliked), '?'));
 
-    // Fusionner les tableaux liked et disliked pour les utiliser dans la requête
     $all = array_merge($liked, $disliked);
 
-    // Requête SQL pour sélectionner une chanson aléatoire qui n'est ni likée ni dislikée
     $sql = 'SELECT * FROM `song` WHERE id NOT IN (' . $placeholders . ') ORDER BY RAND() LIMIT 1';
     $sth = $dbh->prepare($sql);
     $sth->execute($all);
@@ -191,7 +188,7 @@ function tinder($dbh, $data, $data2)
 
 function readqr($dbh, $data)
 {
-    $liked = explode('/', $data);
+    $liked = str_getcsv($data, '/');
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
@@ -213,6 +210,7 @@ function readqr($dbh, $data)
         </article>';
     }
 }
+
 
 function validateDate($date, $format = 'Y-m-d'): bool
 {
