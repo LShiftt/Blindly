@@ -51,10 +51,12 @@ function head(string $title = ''): string
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'pages')) {
         $html_link_index = '../index.php';
         $html_link_others = '.';
+        $link_icone = "../media/img/Icone.png";
     }
     else{
             $html_link_index = './index.php';
             $html_link_others = './pages';
+            $link_icone = "./media/img/Icone.png";
     }
 
     return <<<HTML_HEAD
@@ -103,7 +105,7 @@ function head(string $title = ''): string
     </nav>
     <header>
         <button id="btn-menu-open" popovertarget="nav" popovertargetaction="show">Menu</button>
-        <img src="./media/img/Icone.png" alt="Icone Blindly" class="icone" id="icone--header">
+        <img src="$link_icone" alt="Icone Blindly" class="icone" id="icone--header">
     </header>
 HTML_HEAD;
 }
