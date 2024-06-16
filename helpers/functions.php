@@ -14,7 +14,7 @@ function head(string $title = ''): string
                 <link rel="stylesheet" href="../assets/css/global/global.css">
                 <link rel="stylesheet" href="../assets/css/global/header.css">
                 <link rel="stylesheet" href="../assets/css/global/nav.css">
-                <link rel="stylesheet" href="./assets/css/global/footer.css">
+                <link rel="stylesheet" href="../assets/css/global/footer.css">
                 <link rel="stylesheet" href="../assets/css/global/theme.css">
         ';
     }
