@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
 
 ?>
-
-<style>
+<!-- fait ce que tu veux de la boite -->
+<style> 
   .test-element {
     display: flex;
     flex-flow: column wrap;
@@ -64,24 +64,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 </div>
 
 <?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
-// dump($id)
 ?>
 
-<div id="options">
+<div id="options"> <!-- Boutons pour liké ou non, utile pour pc -->
   <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
   <a href="./musiswipe.php?disliked=<?= $id ?>">Je n'aime pas</a>
 </div>
 
-<form id="saveLiked" action="" method="get">
-  <input id="liked" type="hidden" name="liked" value="">
-  <input id="disliked" type="hidden" name="disliked" value="">
+<form id="saveLiked" action="" method="get"><!-- Caché -->
+  <input id="liked" type="hidden" name="liked" value=""><!-- Caché -->
+  <input id="disliked" type="hidden" name="disliked" value=""><!-- Caché -->
 </form>
 <form action="" method="get">
-  <input id="disliked" type="hidden" name="reset" value="1">
+  <input id="disliked" type="hidden" name="reset" value="1"><!-- Debug, potentiellement pour la page d'accueil ? -->
   <button type="submit">Reset liked et disliked</button>
 </form>
-<input id="la"></input>
-<input id="le"></input>
+<input id="la"></input> <!-- Debug -->
+<input id="le"></input> <!-- Debug -->
 <script>
   const la = document.getElementById("la");
   const le = document.getElementById("le");
