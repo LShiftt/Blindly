@@ -3,7 +3,13 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
+if (!isset($_SESSION['liked'])) {
+    $_SESSION['liked'] = '';
+}
 
+if (!isset($_SESSION['disliked'])) {
+    $_SESSION['disliked'] = '';
+}
 ?>
 
 <!-- Share -->

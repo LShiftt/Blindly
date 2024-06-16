@@ -3,7 +3,13 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
+if (!isset($_SESSION['liked'])) {
+  $_SESSION['liked'] = '';
+}
 
+if (!isset($_SESSION['disliked'])) {
+  $_SESSION['disliked'] = '';
+}
 // $_SESSION['liked'] = '2/3/4';
 // $_SESSION['disliked'] = '1/5';
 // dump($_SESSION);
@@ -46,8 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     text-align: center;
     -ms-touch-action: none;
     padding: 1REM;
-
-
   }
 </style>
 
