@@ -8,7 +8,7 @@
 
 function head(string $title = ''): string
 {   
-    
+    //Call one time the CSS style to avoid to be called twice
     if ( !str_contains($_SERVER['SCRIPT_FILENAME'],'index.php')) {
         $links_css='
                     <link rel="stylesheet" href="../assets/css/global/global.css">
@@ -35,6 +35,7 @@ function head(string $title = ''): string
 
     }
 
+    //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'musiswipe.php')) {
         $link_musiswpie = '<link rel="stylesheet" href="../assets/css/musiswipe.css">';
     }
@@ -42,11 +43,22 @@ function head(string $title = ''): string
         $link_musiswpie = '';
     }
 
+
+    //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'library.php')) {
         $link_library = '<link rel="stylesheet" href="../assets/css/library.css">';
     }
     else {
         $link_library = '';
+    }
+
+    if (str_contains($_SERVER['SCRIPT_FILENAME'],'pages')) {
+        $html_link_index = '../index.php';
+        $html_link_others = '.';
+    }
+    else{
+            $html_link_index = './index.php';
+            $html_link_others = './pages';
     }
 
     return <<<HTML_HEAD
@@ -73,17 +85,17 @@ function head(string $title = ''): string
 </head>
 <body data-theme='light'>
     <nav id="nav" popover>
-        <a href="./index.php"><img src="$link_icone" alt="Icone Blindly" class="icone" id="nav--icone"></a>
+        <a href="$html_link_index"><img src="$link_icone" alt="Icone Blindly" class="icone" id="nav--icone"></a>
         <div class="nav--menu">
-            <a href="" class="nav--menu--link">
+            <a href=" $html_link_others/musiswipe.php" class="nav--menu--link">
                 <i class="fa-solid fa-heart-circle-plus"  style="color:var( --text-color);"></i>
                 <p>MusiSwipe</p>
             </a>
-            <a href="" class="nav--menu--link">
+            <a href=" $html_link_others/discovery.php" class="nav--menu--link">
                 <i class="fa-solid fa-folder-tree" style="color:var( --text-color);"></i>
                 <p>Discovery</p>
             </a>
-            <a href="" class="nav--menu--link">
+            <a href=" $html_link_others/library.php" class="nav--menu--link">
                 <i class="fa-solid fa-folder" style="color: var( --text-color);"></i>
                 <p>Librairie</p>
             </a>
@@ -169,7 +181,7 @@ function tinder($dbh, $data, $data2)
     $placeholders = implode(',', array_fill(0, count($liked) + count($disliked), '?'));
 
     $all = array_merge($liked, $disliked);
-
+    
     $sql = 'SELECT * FROM `song` WHERE id NOT IN (' . $placeholders . ') ORDER BY RAND() LIMIT 1';
     $sth = $dbh->prepare($sql);
     $sth->execute($all);
