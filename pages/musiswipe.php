@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     align-items: center;
 
 
-    max-width: 150px;
     background-color: black;
     z-index: 5;
     position: absolute;
@@ -48,8 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     -ms-touch-action: none;
     padding: 1REM;
 
-    overflow: hidden;
-    white-space: nowrap;
+
   }
 </style>
 
@@ -81,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
 </form>
+
 <input id="la"></input>
 <input id="le"></input>
 <script>
