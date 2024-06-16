@@ -11,14 +11,12 @@ function head(string $title = ''): string
     //Call one time the CSS style to avoid to be called twice
     if ( !str_contains($_SERVER['SCRIPT_FILENAME'],'index.php')) {
         $links_css='
-                    <link rel="stylesheet" href="../assets/css/global/global.css">
-                    <link rel="stylesheet" href="../assets/css/global/header.css">
-                    <link rel="stylesheet" href="../assets/css/global/nav.css">
-                    <link rel="stylesheet" href="../assets/css/global/footer.css">
-                    <link rel="stylesheet" href="../assets/css/global/theme.css">
+                <link rel="stylesheet" href="../assets/css/global/global.css">
+                <link rel="stylesheet" href="../assets/css/global/header.css">
+                <link rel="stylesheet" href="../assets/css/global/nav.css">
+                <link rel="stylesheet" href="./assets/css/global/footer.css">
+                <link rel="stylesheet" href="../assets/css/global/theme.css">
         ';
-        $link_icone ='../media/img/Icone.png';
-
     }
     else {
         $links_css='
@@ -31,13 +29,11 @@ function head(string $title = ''): string
                 <link rel="stylesheet" href="./assets/css/index.css">
         
         ';
-        $link_icone ='./media/img/Icone.png';
-
     }
 
     //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'musiswipe.php')) {
-        $link_musiswpie = '<link rel="stylesheet" href="../assets/css/musiswipe.css">';
+        $link_musiswpie = '<link rel="stylesheet" href="./assets/css/musiswipe.css">';
     }
     else {
         $link_musiswpie = '';
@@ -46,7 +42,7 @@ function head(string $title = ''): string
 
     //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'library.php')) {
-        $link_library = '<link rel="stylesheet" href="../assets/css/library.css">';
+        $link_library = '<link rel="stylesheet" href="./assets/css/library.css">';
     }
     else {
         $link_library = '';
@@ -107,7 +103,7 @@ function head(string $title = ''): string
     </nav>
     <header>
         <button id="btn-menu-open" popovertarget="nav" popovertargetaction="show">Menu</button>
-        <img src="$link_icone" alt="Icone Blindly" class="icone" id="icone--header">
+        <img src="./media/img/Icone.png" alt="Icone Blindly" class="icone" id="icone--header">
     </header>
 HTML_HEAD;
 }
@@ -149,7 +145,7 @@ HTML_FOOT;
 
 function search($dbh, $data)
 {
-    $liked = str_getcsv($data, '/');
+    $liked = explode('/',$data);
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
@@ -175,8 +171,8 @@ function search($dbh, $data)
 
 function tinder($dbh, $data, $data2)
 {
-    $liked = str_getcsv($data, '/');
-    $disliked = str_getcsv($data2, '/');
+    $liked = explode('/', $data);
+    $disliked = explode('/',$data2);
 
     $placeholders = implode(',', array_fill(0, count($liked) + count($disliked), '?'));
 
@@ -204,7 +200,7 @@ function tinder($dbh, $data, $data2)
 
 function readqr($dbh, $data)
 {
-    $liked = str_getcsv($data, '/');
+    $liked = explode('/',$data);
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);

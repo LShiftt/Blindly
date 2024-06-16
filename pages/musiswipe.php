@@ -4,7 +4,8 @@ require '../bootstrap.php';
 echo head("Blindly - Musiswipe");
 
 
-
+// $_SESSION['liked'] = '2/3/4';
+// $_SESSION['disliked'] = '1/5';
 // dump($_SESSION);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['liked'])) {
@@ -27,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
 
 ?>
-<!-- fait ce que tu veux de la boite -->
-<style> 
+
+<style>
   .test-element {
     display: flex;
     flex-flow: column wrap;
@@ -64,26 +65,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 </div>
 
 <?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
+// dump($id)
 ?>
 
-<div id="options"> <!-- Boutons pour liké ou non, utile pour pc -->
+<div id="options">
   <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
   <a href="./musiswipe.php?disliked=<?= $id ?>">Je n'aime pas</a>
 </div>
 
-<form id="saveLiked" action="" method="get"><!-- Caché -->
-  <input id="liked" type="hidden" name="liked" value=""><!-- Caché -->
-  <input id="disliked" type="hidden" name="disliked" value=""><!-- Caché -->
+<form id="saveLiked" action="" method="get">
+  <input id="liked" type="hidden" name="liked" value="">
+  <input id="disliked" type="hidden" name="disliked" value="">
 </form>
 <form action="" method="get">
-  <input id="disliked" type="hidden" name="reset" value="1"><!-- Debug, potentiellement pour la page d'accueil ? -->
+  <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
 </form>
-<input id="la"></input> <!-- Debug -->
-<input id="le"></input> <!-- Debug -->
+<input id="la"></input>
+<input id="le"></input>
 <script>
   const la = document.getElementById("la");
-  const le = document.getElementById("le");
+  const le = document.getElementById("la");
 
   const form = document.getElementById("saveLiked");
   const formLiked = document.getElementById("liked");
