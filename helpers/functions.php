@@ -11,14 +11,12 @@ function head(string $title = ''): string
     
     if ( !str_contains($_SERVER['SCRIPT_FILENAME'],'index.php')) {
         $links_css='
-                    <link rel="stylesheet" href="../assets/css/global/global.css">
-                    <link rel="stylesheet" href="../assets/css/global/header.css">
-                    <link rel="stylesheet" href="../assets/css/global/nav.css">
-                    <link rel="stylesheet" href="../assets/css/global/footer.css">
-                    <link rel="stylesheet" href="../assets/css/global/theme.css">
+                <link rel="stylesheet" href="../assets/css/global/global.css">
+                <link rel="stylesheet" href="../assets/css/global/header.css">
+                <link rel="stylesheet" href="../assets/css/global/nav.css">
+                <link rel="stylesheet" href="./assets/css/global/footer.css">
+                <link rel="stylesheet" href="../assets/css/global/theme.css">
         ';
-        $link_icone ='../media/img/Icone.png';
-
     }
     else {
         $links_css='
@@ -31,19 +29,17 @@ function head(string $title = ''): string
                 <link rel="stylesheet" href="./assets/css/index.css">
         
         ';
-        $link_icone ='./media/img/Icone.png';
-
     }
 
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'musiswipe.php')) {
-        $link_musiswpie = '<link rel="stylesheet" href="../assets/css/musiswipe.css">';
+        $link_musiswpie = '<link rel="stylesheet" href="./assets/css/musiswipe.css">';
     }
     else {
         $link_musiswpie = '';
     }
 
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'library.php')) {
-        $link_library = '<link rel="stylesheet" href="../assets/css/library.css">';
+        $link_library = '<link rel="stylesheet" href="./assets/css/library.css">';
     }
     else {
         $link_library = '';
@@ -73,7 +69,7 @@ function head(string $title = ''): string
 </head>
 <body data-theme='light'>
     <nav id="nav" popover>
-        <a href="./index.php"><img src="$link_icone" alt="Icone Blindly" class="icone" id="nav--icone"></a>
+        <a href="./index.php"><img src="./media/img/Icone.png" alt="Icone Blindly" class="icone" id="nav--icone"></a>
         <div class="nav--menu">
             <a href="" class="nav--menu--link">
                 <i class="fa-solid fa-heart-circle-plus"  style="color:var( --text-color);"></i>
@@ -95,7 +91,7 @@ function head(string $title = ''): string
     </nav>
     <header>
         <button id="btn-menu-open" popovertarget="nav" popovertargetaction="show">Menu</button>
-        <img src="$link_icone" alt="Icone Blindly" class="icone" id="icone--header">
+        <img src="./media/img/Icone.png" alt="Icone Blindly" class="icone" id="icone--header">
     </header>
 HTML_HEAD;
 }
@@ -137,7 +133,7 @@ HTML_FOOT;
 
 function search($dbh, $data)
 {
-    $liked = str_getcsv($data, '/');
+    $liked = explode('/',$data);
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
@@ -163,8 +159,8 @@ function search($dbh, $data)
 
 function tinder($dbh, $data, $data2)
 {
-    $liked = str_getcsv($data, '/');
-    $disliked = str_getcsv($data2, '/');
+    $liked = explode('/', $data);
+    $disliked = explode('/',$data2);
 
     $placeholders = implode(',', array_fill(0, count($liked) + count($disliked), '?'));
 
@@ -192,7 +188,7 @@ function tinder($dbh, $data, $data2)
 
 function readqr($dbh, $data)
 {
-    $liked = str_getcsv($data, '/');
+    $liked = explode('/',$data);
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
