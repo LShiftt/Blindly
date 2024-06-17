@@ -30,7 +30,7 @@
 
 
   }
-  .musiSwipe--song--detail>audio{
+  /* .musiSwipe--song--detail>audio{
     margin: 35px 0;
     width: 50%;
     max-width: 300px
@@ -38,29 +38,23 @@
 
   .musiSwipe--song--detail>h2, .musiSwipe--song--detail>h3{
     text-align: center;
-  }
+  } */
 
 
   .musiSwipe--song--detail>img{
     display: flex;
-    flex-flow: column-reverse ;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    border: 2px solid var(--text-color);
-    border-radius: 15px;
-
-    max-width: 200px;
+    background-color: black;
     z-index: 5;
     position: sticky;
-    
+    top: 35vh;
+    left: 35vw;
     color: white;
-  
+    text-align: center;
     -ms-touch-action: none;
     padding: 1REM;
-
-    overflow: hidden;
-    white-space: nowrap;
-    
   }
 
   .musiSwipe--song--btn{
