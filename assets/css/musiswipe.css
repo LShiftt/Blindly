@@ -49,8 +49,8 @@
     background-color: black;
     z-index: 5;
     position: absolute;
-    /* top: 35vh;
-    left: 35vw; */
+    top: 35vh;
+    left: 35vw;
     color: white;
     text-align: center;
     -ms-touch-action: none;
