@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
 
 .musiSwipe--song>h1{
@@ -26,11 +27,11 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-   
+    position: relative;
 
 
   }
-  /* .musiSwipe--song--detail>audio{
+  .musiSwipe--song--detail>audio{
     margin: 35px 0;
     width: 50%;
     max-width: 300px
@@ -38,19 +39,18 @@
 
   .musiSwipe--song--detail>h2, .musiSwipe--song--detail>h3{
     text-align: center;
-  } */
+  }
 
 
   .musiSwipe--song--detail>img{
     display: flex;
-    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     background-color: black;
     z-index: 5;
-    position: sticky;
-    top: 35vh;
-    left: 35vw;
+    position: absolute;
+    /* top: 35vh;
+    left: 35vw; */
     color: white;
     text-align: center;
     -ms-touch-action: none;

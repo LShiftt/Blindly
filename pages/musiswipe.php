@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 <!-- <form action="" method="get">
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
-</form>
+</form> -->
 
 <input id="la"></input>
-<input id="le"></input> -->
+<input id="le"></input>
 
 
 <main class="musiSwipe--song">   
@@ -72,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
         $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
     ?>
       <div class="musiSwipe--song--btn">
-        <a href="./musiswipe.php?liked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-heart"></i></a>
         <a href="./musiswipe.php?disliked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-x"></i></a>
+        <a href="./musiswipe.php?liked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-heart"></i></a>
     </div>
 </main>
 
