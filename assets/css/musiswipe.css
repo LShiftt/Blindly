@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow:hidden;
    
 }
 
@@ -43,17 +44,18 @@
 
 
   .musiSwipe--song--detail>img{
+    
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    z-index: 5;
-    position: absolute;
-    top: 35vh;
+    /* z-index: 5;
+    position: absolute;  */
+   
     left: 35vw;
     color: white;
     text-align: center;
-    -ms-touch-action: none;
+
     padding: 1REM;
   }
 

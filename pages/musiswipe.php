@@ -57,13 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
 </form>
-<!-- <form action="" method="get">
+<form action="" method="get">
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
-</form> -->
+</form>
 
-<input id="la"></input>
-<input id="le"></input>
+<!-- <input id="la"></input>
+<input id="le"></input> -->
 
 
 <main class="musiSwipe--song">   
@@ -114,23 +114,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
     function moveDrag(e) {
       var currentPos = getCoors(e);
       var leftInitial = this.style.left;
-      la.value = leftInitial;
+      // la.value = leftInitial;
       var deltaX = currentPos[0] - origin[0];
       this.style.left = (pos[0] + deltaX) + 'px';
       var deltaXString = deltaX.toString();
-
+      
       if (pos[0] + deltaX <= -120) {
-        le.value = "Pas aimé";
+        // le.value = "Pas aimé";
         formDisliked.value = "<?= $id ?>";
         form.submit();
         isFormSubmitted = true;
       } else if (pos[0] + deltaX >= 120) {
-        le.value = "Aimé";
+        
+        // le.value = "Aimé";
         formLiked.value = "<?= $id ?>";
         form.submit();
         isFormSubmitted = true;
       } else if (pos[0] + deltaX >= -50 && pos[0] + deltaX <= 50) {
-        le.value = "Neutre";
+        // le.value = "Neutre";
       }
     }
   }
@@ -145,12 +146,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
       coors[0] = e.clientX;
       coors[1] = e.clientY;
     }
-    console.log("Coors 2 " + coors);
+    // console.log("Coors 2 " + coors);
     return coors;
   }
 
 
-  const element = document.querySelector('.musiSwipe--song--detail');
+  const element = document.querySelector('.musiSwipe--song--detail--img');
   element.ontouchstart = element.onmspointerdown = startDrag;
 
   var rect = element.getBoundingClientRect();

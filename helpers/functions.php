@@ -188,7 +188,7 @@ function tinder($dbh, $data, $data2)
     if ($song) {
         echo '
         <article class="musiSwipe--song--detail">
-            <img src="' . $song["image"] . '">
+            <img src="' . $song["image"] . '" class="musiSwipe--song--detail--img">
             <audio controls src="' . $song["url"] . '"></audio>
             <h2>' . $song["genre"] . '</h2>
             <h3>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h3>
