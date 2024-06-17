@@ -116,9 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
       var leftInitial = this.style.left;
       la.value = leftInitial;
       var deltaX = currentPos[0] - origin[0];
-      var deltaY = currentPos[1] - origin[1];
       this.style.left = (pos[0] + deltaX) + 'px';
-      this.style.top = (pos[1] + deltaY) + 'px';
       var deltaXString = deltaX.toString();
 
       if (pos[0] + deltaX <= -120) {
