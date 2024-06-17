@@ -67,11 +67,9 @@ nav{
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-.fa-solid{
+.nav--menu--icone{
     margin-right: 30px;
-   font-size: xx-large;
-   color: var( --text-color);
-   
+ 
 }
 
 .nav--menu--link>p{
@@ -81,7 +79,7 @@ nav{
  }
 
 #btn-menu-close{
-    width: fit-content;
+    width: 75px;
     height: 7%;
     background-color: var(--button-background);
     text-decoration: none;        
@@ -119,10 +117,5 @@ nav{
     justify-content: start;
     align-items: center;
     overflow: visible;
-    
-}
-
-.fa-sun{
-    margin-right: inherit;
-
+   
 }

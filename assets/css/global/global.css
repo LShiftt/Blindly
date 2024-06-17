@@ -8,7 +8,7 @@ body{
     background-color: var(--background-color);
     color: var(--text-color);
 
-    height: 100vh;
+
 }
 
 .dark{
@@ -18,4 +18,10 @@ body{
 .light{
     transform: translateX(0%);
     transition: ease-in-out 0.5s;
+}
+
+
+.fa-solid{
+    color: var( --text-color);
+    font-size: xx-large;
 }

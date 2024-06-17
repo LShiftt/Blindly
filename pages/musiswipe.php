@@ -29,60 +29,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
 ?>
 
-<style>
-  .test-element {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-
-
-    max-width: 150px;
-    background-color: black;
-    z-index: 5;
-    position: absolute;
-    top: 35vh;
-    left: 35vw;
-    color: white;
-    text-align: center;
-    -ms-touch-action: none;
-    padding: 1REM;
-
-    overflow: hidden;
-    white-space: nowrap;
-  }
-</style>
 
 <!-- offline -->
-<p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
-<p id="state"></p>
-<div id="target"></div>
+ <div style="display:none;">
+      <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+      <p id="state"></p>
+      <div id="target"></div>
 
-<div id="offlineDiv" style="display: none;">
-  <img id="offlineImage" src="../media/img/a.png">
-  <p>Aie ...</p>
-  <?php search($dbh, $_SESSION['liked']); ?>
-</div>
+      <div id="offlineDiv" style="display: none;">
+        <img id="offlineImage" src="../media/img/a.png">
+        <p>Aie ...</p>
+        <?php search($dbh, $_SESSION['liked']); ?>
+      </div>
+ </div>
 
-<?php $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
-// dump($id)
-?>
 
-<div id="options">
-  <a href="./musiswipe.php?liked=<?= $id ?>">J'aime</a>
-  <a href="./musiswipe.php?disliked=<?= $id ?>">Je n'aime pas</a>
-</div>
+
+
 
 <form id="saveLiked" action="" method="get">
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
 </form>
-<form action="" method="get">
+<!-- <form action="" method="get">
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
 </form>
 <input id="la"></input>
-<input id="le"></input>
+<input id="le"></input> -->
+
+
+<main class="musiSwipe--song">   
+    <h1>Musi<span>Swipe</span></h1>
+    <?php 
+        $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
+    ?>
+      <div class="musiSwipe--song--btn">
+        <a href="./musiswipe.php?liked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-heart"></i></a>
+        <a href="./musiswipe.php?disliked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-x"></i></a>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
   const la = document.getElementById("la");
   const le = document.getElementById("le");

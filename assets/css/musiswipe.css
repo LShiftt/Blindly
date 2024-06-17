@@ -1,0 +1,91 @@
+.musiSwipe--song{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.musiSwipe--song>h1{
+  font-size: xxx-large;
+  text-decoration: underline;
+}
+
+.musiSwipe--song span{
+  color: red;
+  font-style: italic;
+}
+
+
+
+
+.musiSwipe--song--detail{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+   
+
+
+  }
+  .musiSwipe--song--detail>audio{
+    margin: 35px 0;
+    width: 50%;
+    max-width: 300px
+  }
+
+  .musiSwipe--song--detail>h2, .musiSwipe--song--detail>h3{
+    text-align: center;
+  }
+
+
+  .musiSwipe--song--detail>img{
+    display: flex;
+    flex-flow: column-reverse ;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--text-color);
+    border-radius: 15px;
+
+    max-width: 200px;
+   
+    position: sticky;
+    
+    color: white;
+  
+    -ms-touch-action: none;
+    padding: 1REM;
+
+    overflow: hidden;
+    white-space: nowrap;
+    
+  }
+
+  .musiSwipe--song--btn{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 35px 0;
+  }
+
+  .musiSwipe--song--btn--link{
+    border: 3px solid var(--text-color);
+    border-radius: 50%;
+    width: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  .musiSwipe--song--btn--link>i{
+    font-size: xx-large;
+    
+
+  }

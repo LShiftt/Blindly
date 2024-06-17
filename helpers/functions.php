@@ -33,7 +33,7 @@ function head(string $title = ''): string
 
     //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'musiswipe.php')) {
-        $link_musiswpie = '<link rel="stylesheet" href="./assets/css/musiswipe.css">';
+        $link_musiswpie = '<link rel="stylesheet" href="../assets/css/musiswipe.css">';
     }
     else {
         $link_musiswpie = '';
@@ -86,15 +86,15 @@ function head(string $title = ''): string
         <a href="$html_link_index"><img src="$link_icone" alt="Icone Blindly" class="icone" id="nav--icone"></a>
         <div class="nav--menu">
             <a href=" $html_link_others/musiswipe.php" class="nav--menu--link">
-                <i class="fa-solid fa-heart-circle-plus"  style="color:var( --text-color);"></i>
+                <i class="fa-solid fa-heart-circle-plus nav--menu--icone"  style="color:var( --text-color);"></i>
                 <p>MusiSwipe</p>
             </a>
             <a href=" $html_link_others/discovery.php" class="nav--menu--link">
-                <i class="fa-solid fa-folder-tree" style="color:var( --text-color);"></i>
+                <i class="fa-solid fa-folder-tree nav--menu--icone" style="color:var( --text-color);"></i>
                 <p>Discovery</p>
             </a>
             <a href=" $html_link_others/library.php" class="nav--menu--link">
-                <i class="fa-solid fa-folder" style="color: var( --text-color);"></i>
+                <i class="fa-solid fa-folder nav--menu--icone" style="color: var( --text-color);"></i>
                 <p>Librairie</p>
             </a>
         </div>
@@ -162,10 +162,10 @@ function search($dbh, $data)
     foreach ($songs as $song) {
         echo '
         <article>
-            <h1>' . $song["genre"] . '</h1>
-            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
             <img src="' . $song["image"] . '">
             <audio controls src="' . $song["url"] . '" ></audio>
+            <h1>' . $song["genre"] . '</h1>
+            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
         </article>';
     }
 }
@@ -187,11 +187,11 @@ function tinder($dbh, $data, $data2)
 
     if ($song) {
         echo '
-        <article class="test-element">
-            <h1>' . $song["genre"] . '</h1>
-            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+        <article class="musiSwipe--song--detail">
             <img src="' . $song["image"] . '">
             <audio controls src="' . $song["url"] . '"></audio>
+            <h2>' . $song["genre"] . '</h2>
+            <h3>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h3>
         </article>';
         return $id = $song["id"];
     } else {
