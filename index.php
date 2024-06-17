@@ -3,8 +3,16 @@ session_start();
 require './bootstrap.php';
 echo head("home");
 
-$_SESSION['liked'] = '';
-$_SESSION['disliked'] = '';
+if (!isset($_SESSION['liked'])) {
+    $_SESSION['liked'] = '';
+}
+
+if (!isset($_SESSION['disliked'])) {
+    $_SESSION['disliked'] = '';
+}
+
+
+
 ?>
 
 

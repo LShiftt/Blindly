@@ -3,7 +3,13 @@ session_start();
 require '../bootstrap.php';
 echo head("Blindly - Librairie");
 
+if (!isset($_SESSION['liked'])) {
+    $_SESSION['liked'] = '';
+}
 
+if (!isset($_SESSION['disliked'])) {
+    $_SESSION['disliked'] = '';
+}
 ?>
 
 <!-- Share -->
@@ -23,12 +29,11 @@ echo head("Blindly - Librairie");
 
 <h1>QR Code Generator</h1>
 <form id="form">
-    <label for="text">Text to encode:</label>
-    <input type="text" id="text" name="text" required>
+    <input type="hidden" id="text" name="text" value="<?= $_SESSION['liked']?>" required>
     <button type="submit">Generate QR Code</button>
 </form>
 <div id="qrCodeContainer"></div>
-<a id="downloadLink" href="#" download="qrcode.png" style="display: none;">Download QR Code</a>
+<a id="downloadLink" href="#" download="qrcode.png">Download QR Code</a>
 
 <h1>QR Code Reader</h1>
 <form id="readForm" enctype="multipart/form-data">

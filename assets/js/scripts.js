@@ -5,8 +5,8 @@ function share() {
     }
 
     navigator.share({
-        title: 'Ceci est titre',
-        text: 'Ceci est un text',
+        title: 'Blindly, Venez d\'écouvrir de nouveaux horizons',
+        text: 'Dans un univers où les choix musicaux semblent sans limites, dénicher des morceaux qui résonnent avec vos préférences peut devenir un véritable casse-tête. C’est pour cette raison que nous avons développé Blindly, une application novatrice qui métamorphose la quête de nouvelles musiques en une aventure divertissante et sur mesure, s\'inspirant du célèbre fonctionnement de Tinder.',
         url: 'https://mdubois.alwaysdata.net/Blindly'
     })
         .then(() => console.log('Successful share'))

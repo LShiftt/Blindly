@@ -42,7 +42,7 @@ function head(string $title = ''): string
 
     //Get the CSS style of the page when the user go on it
     if (str_contains($_SERVER['SCRIPT_FILENAME'],'library.php')) {
-        $link_library = '<link rel="stylesheet" href="./assets/css/library.css">';
+        $link_library = '<link rel="stylesheet" href="../assets/css/library.css">'; //rajouté un point
     }
     else {
         $link_library = '';
