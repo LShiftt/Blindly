@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
   }
 
 
-  const element = document.querySelector('.test-element');
+  const element = document.querySelector('.musiSwipe--song--detail');
   element.ontouchstart = element.onmspointerdown = startDrag;
 
   var rect = element.getBoundingClientRect();

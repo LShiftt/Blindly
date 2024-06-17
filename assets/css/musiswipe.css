@@ -50,7 +50,7 @@
     border-radius: 15px;
 
     max-width: 200px;
-   
+    z-index: 5;
     position: sticky;
     
     color: white;
