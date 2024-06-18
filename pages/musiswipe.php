@@ -119,20 +119,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
       this.style.left = (pos[0] + deltaX) + 'px';
       var deltaXString = deltaX.toString();
       
-      if (pos[0] + deltaX <= -120) {
+      if (pos[0] + deltaX <= 200) {
         // le.value = "Pas aimé";
         formDisliked.value = "<?= $id ?>";
         form.submit();
         isFormSubmitted = true;
-      } else if (pos[0] + deltaX >= 120) {
+      } else if (pos[0] + deltaX >= 250) {
         
         // le.value = "Aimé";
         formLiked.value = "<?= $id ?>";
         form.submit();
         isFormSubmitted = true;
-      } else if (pos[0] + deltaX >= -50 && pos[0] + deltaX <= 50) {
-        // le.value = "Neutre";
-      }
+      } 
+      return false; // cancels scrolling
     }
   }
 

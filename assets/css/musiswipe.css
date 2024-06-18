@@ -33,7 +33,7 @@
 
   }
   .musiSwipe--song--detail>audio{
-    margin: 35px 0;
+    margin-top: 200px;
     width: 50%;
     max-width: 300px
   }
@@ -49,10 +49,10 @@
     justify-content: center;
     align-items: center;
     background-color: black;
-    /* z-index: 5;
-    position: absolute;  */
-   
-    left: 35vw;
+    z-index: 5;
+    position: absolute; 
+    top: 0vh;
+    left: 32  vw;
     color: white;
     text-align: center;
 
