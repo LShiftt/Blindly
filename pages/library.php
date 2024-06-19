@@ -13,9 +13,8 @@ if (!isset($_SESSION['disliked'])) {
 ?>
 
 <!-- Share -->
-<p>
-    <!-- <button onclick="share()">Partage le site</button> -->
-</p>
+    <button onclick="share()">Partager le site</button>
+
 
 
 <main class="library">
