@@ -12,10 +12,8 @@ if (!isset($_SESSION['disliked'])) {
 }
 ?>
 
-<!-- Share -->
-<p>
-    <!-- <button onclick="share()">Partage le site</button> -->
-</p>
+
+
 
 
 <main class="library">
@@ -28,7 +26,8 @@ if (!isset($_SESSION['disliked'])) {
             <!-- Bouton Génrèrant le QR code-->
             <button popovertarget="export" popovertargetaction="toggle" type="submit" class="btn library--btn" id="btn-export" >Enregistrer vos musiques</button>
             <button  class="library--btn btn" id="btn-import" popovertarget="import" popovertargetaction="toggle">Importer une playlist</button>
-
+            <!-- Share -->
+            <button onclick="share()" class="library--btn btn">Partage le site</button>
         </div>
     </section>
 
