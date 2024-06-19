@@ -18,11 +18,7 @@ header{
     z-index: 0;
     margin-left: 3%;
     font-size: x-large;
-    background-color: var(--button-background);
-    color: var( --button-color);
-    border-radius: 7px;
-    border: none;
-    text-decoration: none; 
+
 
 }
 

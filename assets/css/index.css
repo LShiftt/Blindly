@@ -24,6 +24,7 @@ main>p{
  
 }
 .bold{
-    font-weight: bold;
+    color: red;
+    font-weight: bolder;
     text-decoration: underline;
 } 

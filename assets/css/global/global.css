@@ -21,7 +21,18 @@ body{
 }
 
 
+
 .fa-solid{
     color: var( --text-color);
     font-size: xx-large;
+}
+
+.btn, .form-getImage>input::file-selector-button, #downloadLink {
+    background-color: var(--button-background);
+    color: var( --button-color);
+    border-radius: 7px;
+    border: none;
+    text-decoration: none; 
+    font-size: large;
+ 
 }

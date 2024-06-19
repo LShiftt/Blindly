@@ -89,22 +89,18 @@ function head(string $title = ''): string
                 <i class="fa-solid fa-heart-circle-plus nav--menu--icone"  style="color:var( --text-color);"></i>
                 <p>MusiSwipe</p>
             </a>
-            <a href=" $html_link_others/discovery.php" class="nav--menu--link">
-                <i class="fa-solid fa-folder-tree nav--menu--icone" style="color:var( --text-color);"></i>
-                <p>Discovery</p>
-            </a>
             <a href=" $html_link_others/library.php" class="nav--menu--link">
                 <i class="fa-solid fa-folder nav--menu--icone" style="color: var( --text-color);"></i>
                 <p>Librairie</p>
             </a>
         </div>
-        <button id="btn-menu-close" popovertarget="nav" popovertargetaction="hide"><i class="fa-solid fa-xmark"></i></button>
+        <button class="btn" id="btn-menu-close" popovertarget="nav" popovertargetaction="hide"><i class="fa-solid fa-xmark"></i></button>
         <div class="nav--luminosity">
             <i class="fa-solid fa-sun" style="color:var( --text-color);"></i>
         </div>
     </nav>
     <header>
-        <button id="btn-menu-open" popovertarget="nav" popovertargetaction="show">Menu</button>
+        <button id="btn-menu-open" class="btn" popovertarget="nav" popovertargetaction="show">Menu</button>
         <img src="$link_icone" alt="Icone Blindly" class="icone" id="icone--header">
     </header>
 HTML_HEAD;
@@ -116,7 +112,7 @@ function foot(): string
         $scripts_js='
             <script src="../assets/js/scripts.js"></script>
             <script src="../assets/js/luminosity.js"></script>
-
+            <script src="../assets/js/library.js"></script>
         ';
     }
     else {
@@ -161,11 +157,11 @@ function search($dbh, $data)
 
     foreach ($songs as $song) {
         echo '
-        <article>
-            <img src="' . $song["image"] . '">
-            <audio controls src="' . $song["url"] . '" ></audio>
+        <article class="liked-song">
             <h1>' . $song["genre"] . '</h1>
             <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+            <img src="' . $song["image"] . '">
+            <audio controls src="' . $song["url"] . '" ></audio>
         </article>';
     }
 }
@@ -202,14 +198,18 @@ function tinder($dbh, $data, $data2)
 
 function readqr($dbh, $data)
 {
-    $liked = explode('/',$data);
+    $data = preg_replace('//+/', '/', $data);
+
+    $data = trim($data, '/');
+
+    $liked = explode('/', $data);
     $whereClauses = array();
     foreach ($liked as $value) {
         $whereClauses[] = "id = " . intval($value);
     }
     $where = implode(' OR ', $whereClauses);
 
-    $sql = 'SELECT * FROM `song` WHERE ' . $where . ' ORDER BY id ASC';
+    $sql = 'SELECT * FROM song WHERE ' . $where . ' ORDER BY id ASC';
     $sth = $dbh->prepare($sql);
     $sth->execute();
     $songs = $sth->fetchAll();
@@ -217,10 +217,10 @@ function readqr($dbh, $data)
     foreach ($songs as $song) {
         echo '
         <article class="test-element">
-            <h1>' . $song["genre"] . '</h1>
-            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
-            <img src="' . $song["image"] . '">
-            <audio controls src="' . $song["url"] . '"></audio>
+            <h1>' . htmlspecialchars($song["genre"]) . '</h1>
+            <h2>' . htmlspecialchars($song["title"]) . ', par : <i>' . htmlspecialchars($song["author"]) . '</i></h2>
+            <img src="' . htmlspecialchars($song["image"]) . '">
+            <audio controls src="' . htmlspecialchars($song["url"]) . '"></audio>
         </article>';
     }
 }

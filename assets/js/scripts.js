@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 function generateQRCode() {
     const text = document.getElementById('text').value;
+
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&data=${encodeURIComponent(text)}`;
 
     fetch(qrCodeUrl)
