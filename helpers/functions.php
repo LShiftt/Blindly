@@ -109,7 +109,6 @@ function foot(): string
         $scripts_js='
             <script src="../assets/js/scripts.js"></script>
             <script src="../assets/js/luminosity.js"></script>
-            <script src="../assets/js/library.js"></script>
         ';
     }
     else {
@@ -222,7 +221,9 @@ function tinder($dbh, $data, $data2)
 
 function readqr($dbh, $data)
 {
-    $data = preg_replace('//+/', '/', $data);
+    while (strpos($data, '//') !== false) {
+        $data = str_replace('//', '/', $data);
+    } 
 
     $data = trim($data, '/');
 
@@ -240,7 +241,7 @@ function readqr($dbh, $data)
 
     foreach ($songs as $song) {
         echo '
-        <article class="test-element">
+        <article class="musiSwipe--song--detail">
             <h1>' . htmlspecialchars($song["genre"]) . '</h1>
             <h2>' . htmlspecialchars($song["title"]) . ', par : <i>' . htmlspecialchars($song["author"]) . '</i></h2>
             <img src="' . htmlspecialchars($song["image"]) . '">

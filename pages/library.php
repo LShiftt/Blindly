@@ -47,6 +47,8 @@ if (!isset($_SESSION['disliked'])) {
             <input type="hidden" name="inputData" id="inputData" value="">
             <button type="submit" name="execute_function" class='library--btn btn' id="print-btn">Afficher</button>
         </form>
+            <!--Message d'erreur-->
+        <div id="qrCodeResult"></div>
     </div>
 
 <!-- Générer QR CODE et possibilité de le télcharger -->
@@ -61,8 +63,7 @@ if (!isset($_SESSION['disliked'])) {
     <div id="qrCodeContainer"></div>
     <!--Download le QRCode-->
     <a id="downloadLink" href="#" download="qrcode.png">Télécharger le QRcode</a>
-    <!--Message d'erreur-->
-    <div id="qrCodeResult"></div>
+
 </div>
 
 <section class="Songs">
