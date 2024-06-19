@@ -1,6 +1,0 @@
-4 points sur l'idée / Concept
-4 points Interface / UX / Responsive
-4 Points HTML / CSS (accessibillité, jolie, on peut utiliser scss)
-4 Points Fonctionnabilité(s) moderne
-4 Points Qualité de code (Github avec le readMe.txt, images en webp etc...)
- 
