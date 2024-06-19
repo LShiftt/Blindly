@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
         $id = tinder($dbh, $_SESSION['liked'], $_SESSION['disliked']);
     ?>
       <div class="musiSwipe--song--btn">
-        <a href="./musiswipe.php?disliked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-x"></i></a>
-        <a href="./musiswipe.php?liked=<?= $id ?>" class="musiSwipe--song--btn--link"><i class="fa-solid fa-heart"></i></a>
+        <a href="./musiswipe.php?disliked=<?= $id ?>" class="musiSwipe--song--btn--link" id="x-mark"><i class="fa-solid fa-x"></i></a>
+        <a href="./musiswipe.php?liked=<?= $id ?>" class="musiSwipe--song--btn--link" id="liked"><i class="fa-solid fa-heart"></i></a>
     </div>
 </main>
 

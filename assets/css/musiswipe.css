@@ -81,6 +81,28 @@
     text-decoration: none;
     margin: 0 10px;
   }
+  
+  #liked:hover  {
+    transition: 0.5s ease-in-out;
+    background-color: rgb(236, 31, 99);
+    color: white;
+  }
+
+  #liked:hover i {
+    color: white;
+  }
+
+  #x-mark:hover  {
+    transition: 0.5s ease-in-out;
+    background-color: rgb(95, 173, 247);
+    color: white;
+  }
+
+
+  #x-mark:hover i {
+
+    color: white;
+  }
 
   .musiSwipe--song--btn--link>i{
     font-size: xx-large;
