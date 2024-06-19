@@ -183,22 +183,4 @@ width: 50%;
 
 }
 
-.liked-song{
-    min-width: 100px;
-    max-width: 250px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    text-align: center;
-   
-}
-
-.liked-song>audio{
-   min-width: 50px;
-   max-width: 100%;
-}
-
 

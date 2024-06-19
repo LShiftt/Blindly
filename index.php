@@ -33,7 +33,7 @@ if (!isset($_SESSION['disliked'])) {
     </div>
     <img id="offlineImage" src="./media/img/vinyleImg.png" alt='vinyle'>
     <div id="offline--song">
-        <?php search($dbh, $_SESSION['liked']); ?>
+        <?php searchIndex($dbh, $_SESSION['liked']); ?>
     </div>
 </div>
 <?= foot(); 

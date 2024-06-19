@@ -163,6 +163,33 @@ function search($dbh, $data)
     }
 }
 
+function searchIndex($dbh, $data)
+{
+    $liked = explode('/',$data);
+    $whereClauses = array();
+    foreach ($liked as $value) {
+        $whereClauses[] = "id = " . intval($value);
+    }
+    $where = implode(' OR ', $whereClauses);
+
+    $sql = 'SELECT * FROM song WHERE ' . $where . ' ORDER BY id ASC';
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $songs = $sth->fetchAll();
+
+    foreach ($songs as $song) {
+        $songUrl = substr($song["url"], 3);
+        $songImage = substr($song["image"], 3);
+        echo '
+        <article class="liked-song">
+            <h1>' . $song["genre"] . '</h1>
+            <h2>' . $song["title"] . ', par : <i>' . $song["author"] . '</i></h2>
+            <img src="' . $songImage . '">
+            <audio controls src="' . $songUrl . '" ></audio>
+        </article>';
+    }
+}
+
 
 function tinder($dbh, $data, $data2)
 {
