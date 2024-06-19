@@ -241,11 +241,11 @@ function readqr($dbh, $data)
 
     foreach ($songs as $song) {
         echo '
-        <article class="musiSwipe--song--detail">
-            <h1>' . htmlspecialchars($song["genre"]) . '</h1>
-            <h2>' . htmlspecialchars($song["title"]) . ', par : <i>' . htmlspecialchars($song["author"]) . '</i></h2>
-            <img src="' . htmlspecialchars($song["image"]) . '">
-            <audio controls src="' . htmlspecialchars($song["url"]) . '"></audio>
+        <article class="liked-song">
+            <h1>' . $song["genre"] . '</h1>
+            <h2>' . $song["title"] . ', par : <i>' . htmlspecialchars($song["author"]) . '</i></h2>
+            <img src="' . $song["image"] . '">
+            <audio controls src="' . $song["url"] . '"></audio>
         </article>';
     }
 }
