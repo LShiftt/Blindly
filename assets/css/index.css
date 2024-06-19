@@ -4,7 +4,7 @@ main{
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    text-align: center; 
+
     margin-bottom: 15%;
   
  
@@ -13,14 +13,16 @@ main>h1{
     text-decoration: underline;
     font-size: xxx-large;
     padding-top: 20px;
+    text-align: center;
 }
 
 main>p{
-    width: 50%;
+    width: 35%;
     font-size: large;
     font-weight: bold;
     text-align: center;
-    margin-top: 100px;  
+    margin-top: 100px; 
+    text-justify: auto; 
  
 }
 .bold{
