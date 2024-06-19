@@ -80,7 +80,7 @@ function head(string $title = ''): string
 </head>
 <body data-theme='light'>
     <nav id="nav" popover>
-        <a href="$html_link_index"><img src="$link_icone" alt="Icone Blindly" class="icone" id="nav--icone"></a>
+        <a href="$html_link_index"><img src="$link_icone" alt="Icone Blindly" class="icone img-icone" id="nav--icone"></a>
         <div class="nav--menu">
             <a href=" $html_link_others/musiswipe.php" class="nav--menu--link">
                 <i class="fa-solid fa-heart-circle-plus nav--menu--icone"  style="color:var( --text-color);"></i>
