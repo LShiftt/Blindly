@@ -1,0 +1,49 @@
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+  }
+
+#offlineDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+}
+#offlineDiv b{
+    font-weight: bolder;
+    text-decoration: underline;
+    font-size: x-large; 
+}
+
+#target{
+    width: 50%;
+}
+
+#state{
+    text-align: center;
+}
+
+#offlineImage{
+    padding: 15px 0;
+    max-width: 250px;
+    height: auto;
+    animation: rotate  2s linear infinite;
+}
+
+#offline--song{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+
+}
+

@@ -37,18 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
 
 
 <!-- offline -->
- <div style="display:none;">
-      <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
-      <p id="state"></p>
-      <div id="target"></div>
 
-      <div id="offlineDiv" style="display: none;">
-        <img id="offlineImage" src="../media/img/a.png">
-        <p>Aie ...</p>
+<div id="offlineDiv" style="display: none;">
+    <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+    <div id="target">
+        <p id="state"></p>
+    </div>
+    <img id="offlineImage" src="../media/img/vinyleImg.png" alt='vinyle'>
+    <div id="offline--song">
         <?php search($dbh, $_SESSION['liked']); ?>
-      </div>
- </div>
-
+    </div>
+</div>
 
 
 
@@ -57,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
   <input id="liked" type="hidden" name="liked" value="">
   <input id="disliked" type="hidden" name="disliked" value="">
 </form>
-<form action="" method="get">
+<!-- <form action="" method="get">
   <input id="disliked" type="hidden" name="reset" value="1">
   <button type="submit">Reset liked et disliked</button>
-</form>
+</form> -->
 
 <!-- <input id="la"></input>
 <input id="le"></input> -->
@@ -119,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['reset'])) {
       this.style.left = (pos[0] + deltaX) + 'px';
       var deltaXString = deltaX.toString();
       
-      if (pos[0] + deltaX <= 200) {
+      if (pos[0] + deltaX <= 75) {
         // le.value = "Pas aimé";
         formDisliked.value = "<?= $id ?>";
         form.submit();

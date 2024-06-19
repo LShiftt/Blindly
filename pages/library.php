@@ -17,15 +17,7 @@ if (!isset($_SESSION['disliked'])) {
     <!-- <button onclick="share()">Partage le site</button> -->
 </p>
 
-<!-- offline -->
-<!-- <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
-<p id="state"></p>
-<div id="target"></div>
-<div id="offlineDiv" style="display: none;">
-    <img id="offlineImage" src="../media/img/a.png">
-    <p>Aie ...</p>
-    <?php //search($dbh, $_SESSION['liked']); ?>
-</div> -->
+
 <main class="library">
     <section class="library--header">
         <div class="library--title">
@@ -89,7 +81,18 @@ if (!isset($_SESSION['disliked'])) {
 
 </main>
 
+<!-- offline -->
 
+<div id="offlineDiv" style="display: none;">
+    <p>L'état de votre connexion est <b id="status">en ligne</b>.</p>
+    <div id="target">
+        <p id="state"></p>
+    </div>
+    <img id="offlineImage" src="../media/img/vinyleImg.png" alt='vinyle'>
+    <div id="offline--song">
+        <?php search($dbh, $_SESSION['liked']); ?>
+    </div>
+</div>
 
 
 

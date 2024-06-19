@@ -98,7 +98,7 @@ function updateConnectionStatus() {
                 element.style.display = 'none';
             }
         }
-        offlineDiv.style.display = 'block';
+        offlineDiv.style.display = 'flex';
     } else {
         const allElements = document.body.children;
         for (let element of allElements) {

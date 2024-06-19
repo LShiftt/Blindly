@@ -16,6 +16,7 @@ function head(string $title = ''): string
                 <link rel="stylesheet" href="../assets/css/global/nav.css">
                 <link rel="stylesheet" href="../assets/css/global/footer.css">
                 <link rel="stylesheet" href="../assets/css/global/theme.css">
+                <link rel="stylesheet" href="../assets/css/global/offline.css">
         ';
     }
     else {
@@ -25,7 +26,7 @@ function head(string $title = ''): string
                 <link rel="stylesheet" href="./assets/css/global/nav.css">
                 <link rel="stylesheet" href="./assets/css/global/footer.css">
                 <link rel="stylesheet" href="./assets/css/global/theme.css">
-
+                <link rel="stylesheet" href="./assets/css/global/offline.css">
                 <link rel="stylesheet" href="./assets/css/index.css">
         
         ';
@@ -73,11 +74,7 @@ function head(string $title = ''): string
 
     <script src="https://kit.fontawesome.com/1ce9ab38cd.js" crossorigin="anonymous"></script>
 
-  <style>
-  img {
-    max-width: 150px;
-    }
-  </style>
+
 
   <title>$title</title>
 </head>
